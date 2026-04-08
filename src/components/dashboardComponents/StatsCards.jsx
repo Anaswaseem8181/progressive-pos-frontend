@@ -1,4 +1,4 @@
-import { products, customers, sales } from "../../data/data";
+import { products, customers, sales } from "../../data";
 import { getDashboardStats } from "../../utils/dashboardUtils";
 
 const StatsCards = () => {

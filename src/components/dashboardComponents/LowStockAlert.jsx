@@ -1,4 +1,4 @@
-import { products } from "../../data/data";
+import { products } from "../../data";
 
 const LowStockAlert = () => {
   const lowStockProducts = products.filter(p => p.stock < 10);

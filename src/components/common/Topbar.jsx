@@ -1,7 +1,6 @@
-import React from "react";
 import { useAuth } from "../../hooks/useAuth";
 import { useLocation } from "react-router-dom";
-import { menuItems } from "../../data/data";
+import { menuItems } from "../../data";
 
 const Topbar = () => {
   const { user } = useAuth();

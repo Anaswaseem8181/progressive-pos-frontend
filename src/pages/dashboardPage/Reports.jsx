@@ -1,6 +1,6 @@
 import { Calendar, Filter, DollarSign, ShoppingBag, Tag, ChevronRight } from "lucide-react";
 import { motion } from "motion/react";
-import { sales, topSelling } from "../data/data";
+import { sales, topSelling } from "../../data/index";
 
 const Reports = () => {
   const totalRevenue = sales.reduce((acc, sale) => acc + sale.amount, 0);

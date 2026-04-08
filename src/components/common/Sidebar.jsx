@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
-import { menuItems } from "../../data/data";
+import { menuItems } from "../../data";
 import * as Icons from "lucide-react";
 import { cn } from "../../lib/utils";
 import { LogOut, ShoppingCart, Menu, X } from "lucide-react";

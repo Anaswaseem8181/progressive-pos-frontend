@@ -1,9 +1,9 @@
 import { Search, Plus, ShoppingCart, Trash2, ChevronDown } from "lucide-react";
 import { motion } from "motion/react";
-import { products as initialProducts, customers } from "../data/data";
-import { filterProducts } from "../utils/productUtils";
-import { usePOS } from "../hooks/usePOS";
-import { cn } from "../lib/utils";
+import { products as initialProducts, customers } from "../../data/index";
+import { filterProducts } from "../../utils/productUtils";
+import { usePOS } from "../../hooks/usePOS";
+import { cn } from "../../lib/utils";
 
 const POS = () => {
   const { cart, search, setSearch, addToCart, removeFromCart, subtotal } = usePOS();

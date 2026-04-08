@@ -1,5 +1,4 @@
-import React from "react";
-import { sales } from "../../data/data";
+import { sales } from "../../data";
 
 const RecentSales = () => {
   return (

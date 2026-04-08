@@ -1,7 +1,7 @@
 import { Plus, Edit2, Trash2, Search } from "lucide-react";
 import { motion } from "motion/react";
-import { products } from "../data/data";
-import { cn } from "../lib/utils";
+import { products } from "../../data/index";
+import { cn } from "../../lib/utils";
 
 const Inventory = () => {
   return (

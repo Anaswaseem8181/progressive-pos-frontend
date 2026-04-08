@@ -1,6 +1,6 @@
 import { Plus, Search, Mail, Phone, Edit2, BarChart2 } from "lucide-react";
 import { motion } from "motion/react";
-import { customers } from "../data/data";
+import { customers } from "../../data/index";
 
 const Customers = () => {
   return (

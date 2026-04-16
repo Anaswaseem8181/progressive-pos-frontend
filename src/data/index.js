@@ -1,4 +1,4 @@
-import { DollarSign, Package, AlertTriangle, Users, CloudUpload, PackageSearch, Smartphone, WifiOff, TrendingUp, ShieldCheck, Zap, ShoppingCart, LineChart, FileDown, Star } from "lucide-react";
+import { DollarSign, Package, AlertTriangle, Users, CloudUpload, PackageSearch, Smartphone, WifiOff, TrendingUp, ShieldCheck, Zap, ShoppingCart, LineChart, FileDown, Star, Globe } from "lucide-react";
 import adminDashboard from "../assets/images/demoPageImages/AdminDashboard.png";
 import managerDashboard from "../assets/images/demoPageImages/ManagerDashboard.png";
 import cashierDashboard from "../assets/images/demoPageImages/CashierDashboard.png";
@@ -65,8 +65,36 @@ export const menuItems = [
   { name: "Inventory", path: "/inventory", roles: ["admin"], icon: "Package" },
   { name: "Customers", path: "/customers", roles: ["admin", "manager", "cashier"], icon: "Users" },
   { name: "Reports", path: "/reports", roles: ["admin", "manager"], icon: "BarChart3" },
-  { name: "Users", path: "/users", roles: ["admin"], icon: "ShieldCheck" },
+  { name: "Staff", path: "/users", roles: ["admin"], icon: "ShieldCheck" },
   { name: "Settings", path: "/settings", roles: ["admin", "manager", "cashier"], icon: "Settings" },
+];
+
+export const SUBSCRIPTION_PLANS = [
+  {
+    title: "Monthly Plan",
+    price: 150,
+    duration: "month",
+    features: [
+      "Full POS Access",
+      "Inventory Management",
+      "Sales Tracking",
+      "Basic Reports",
+      "Email Support",
+    ],
+  },
+  {
+    title: "Yearly Plan",
+    price: 1600,
+    duration: "year",
+    highlighted: true,
+    features: [
+      "Everything in Monthly",
+      "Advanced Analytics",
+      "Priority Support",
+      "Multi-User Access",
+      "Save 20% Annually",
+    ],
+  },
 ];
 
 export const features = [
@@ -245,3 +273,38 @@ export const demoScreenshots = [
     imagePath: adminDashboard
   }
 ];
+export const REGISTER_FEATURES = [
+  "Full Inventory Management",
+  "Real-time Sales Analytics",
+  "Offline-ready Transaction Support",
+  "Role-based Staff & Permission Controls"
+];
+
+export const LOGIN_BENEFITS = [
+  { icon: ShieldCheck, text: "256-bit SSL Encryption" },
+  { icon: Globe, text: "Worldwide Access" }
+];
+
+export const TRUST_BADGES = [
+  { icon: ShieldCheck, text: "Secure Payments" },
+  { icon: Zap, text: "Instant Setup" },
+  { icon: ShieldCheck, text: "Stripe Secure Checkout" }
+];
+
+export const CARD_ELEMENT_OPTIONS = {
+  style: {
+    base: {
+      fontSize: "16px",
+      color: "#0f172a",
+      fontFamily: "'Inter', sans-serif",
+      fontSmoothing: "antialiased",
+      "::placeholder": { color: "#94a3b8" },
+      iconColor: "#2563eb",
+    },
+    invalid: {
+      color: "#ef4444",
+      iconColor: "#ef4444",
+    },
+  },
+  hidePostalCode: true,
+};

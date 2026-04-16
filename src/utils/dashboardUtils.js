@@ -1,13 +1,14 @@
 import { DollarSign, Package, AlertTriangle, Users } from "lucide-react";
+import { formatPrice } from "./currencyUtils";
 
-export const getDashboardStats = (products, customers, sales) => {
+export const getDashboardStats = (products, customers, sales, currency = "PKR") => {
   const totalRevenue = sales.reduce((acc, sale) => acc + sale.amount, 0);
   const lowStockCount = products.filter(p => p.stock < 10).length;
 
   return [
     {
       label: "Total Revenue",
-      value: `Rs. ${totalRevenue.toFixed(2)}`,
+      value: formatPrice(totalRevenue, currency),
       icon: DollarSign,
       color: "text-emerald-600",
       bg: "bg-emerald-50",

@@ -1,9 +1,13 @@
 import { Plus, Edit2, Trash2, Search } from "lucide-react";
 import { motion } from "motion/react";
-import { products } from "../../data/index";
+import { useProducts } from "../../hooks/useProducts";
 import { cn } from "../../lib/utils";
+import { useCurrency } from "../../hooks/useCurrency";
 
 const Inventory = () => {
+  const { products } = useProducts();
+  const { fmt } = useCurrency();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -55,7 +59,7 @@ const Inventory = () => {
                     <span className="text-sm text-gray-500 font-medium">{p.category}</span>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="text-sm font-bold text-gray-900">Rs. {p.price.toFixed(2)}</span>
+                    <span className="text-sm font-bold text-gray-900">{fmt(p.price)}</span>
                   </td>
                   <td className="px-6 py-4 text-center">
                     <span className={cn("text-sm font-bold", p.stock < 10 ? "text-orange-600" : "text-gray-900")}>

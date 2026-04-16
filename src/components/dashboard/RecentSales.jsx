@@ -1,6 +1,10 @@
-import { sales } from "../../data";
+import { useSales } from "../../hooks/useSales";
+import { useCurrency } from "../../hooks/useCurrency";
 
 const RecentSales = () => {
+  const { sales } = useSales();
+  const { fmt } = useCurrency();
+
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
       <h3 className="text-lg font-bold text-gray-900 mb-6">Recent Sales</h3>
@@ -13,7 +17,7 @@ const RecentSales = () => {
               </span>
               <span className="text-xs text-gray-400 font-medium">{sale.date}</span>
             </div>
-            <span className="text-sm font-bold text-emerald-600">Rs. {sale.amount.toFixed(2)}</span>
+            <span className="text-sm font-bold text-emerald-600">{fmt(sale.amount)}</span>
           </div>
         ))}
       </div>

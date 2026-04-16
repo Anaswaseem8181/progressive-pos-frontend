@@ -2,9 +2,9 @@ import { useState } from "react";
 import { ArrowLeft, MonitorPlay, Maximize2, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
-import { demoScreenshots } from "../data";
-import Footer from "../components/common/Footer";
-import { Button } from "../components/ui/Button";
+import { demoScreenshots } from "../../data";
+import Footer from "../../components/common/Footer";
+import { Button } from "../../components/ui/Button";
 
 const DemoPage = () => {
   const navigate = useNavigate();

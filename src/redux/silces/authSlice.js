@@ -11,7 +11,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      const { email, role } = action.payload;
+      const { email, role, businessName, currency } = action.payload;
 
       const name = email.split("@")[0] || "User";
 
@@ -20,6 +20,8 @@ const authSlice = createSlice({
         name: name.charAt(0).toUpperCase() + name.slice(1),
         email,
         role,
+        businessName: businessName || "Progressive POS",
+        currency: currency || "PKR",
       };
 
       state.user = user;
@@ -30,8 +32,39 @@ const authSlice = createSlice({
       state.user = null;
       localStorage.removeItem("pos_user");
     },
+
+    updateCurrency: (state, action) => {
+      if (state.user) {
+        state.user.currency = action.payload;
+        localStorage.setItem("pos_user", JSON.stringify(state.user));
+      }
+    },
   },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { login, logout, updateCurrency } = authSlice.actions;
+
+
+import { mockDb } from "../../utils/mockDb";
+
+export const registerUser = (userData) => (dispatch) => {
+  const newAdmin = {
+    ...userData,
+    role: "admin",
+    currency: userData.currency || "PKR",
+    adminEmail: userData.email,
+  };
+  mockDb.saveUser(newAdmin);
+};
+
+export const loginUser = (email, password) => (dispatch) => {
+  const userFound = mockDb.findUser(email, password);
+
+  if (userFound) {
+    dispatch(login(userFound));
+    return true;
+  }
+  return false;
+};
+
 export default authSlice.reducer;

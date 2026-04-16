@@ -1,8 +1,9 @@
 import { Plus, Search, Mail, Phone, Edit2, BarChart2 } from "lucide-react";
 import { motion } from "motion/react";
-import { customers } from "../../data/index";
+import { useCustomers } from "../../hooks/useCustomers";
 
 const Customers = () => {
+  const { customers } = useCustomers();
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}

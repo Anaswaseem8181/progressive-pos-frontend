@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import { useAuth } from '../../../hooks/useAuth';
+import { useCurrency } from '../../../hooks/useCurrency';
 
 const SettingsForm = () => {
+  const { user } = useAuth();
+  const { currency: currentCurrency } = useCurrency();
+
   const [formData, setFormData] = useState({
-    storeName: 'Progressive POS',
-    currency: 'USD',
+    storeName: user?.businessName || 'Progressive POS',
     taxRate: 10,
     notificationEmails: true,
   });
@@ -18,7 +22,6 @@ const SettingsForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simulate save
     alert('Settings saved successfully!');
   };
 
@@ -37,18 +40,16 @@ const SettingsForm = () => {
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-semibold text-gray-700">Currency</label>
-          <select
-            name="currency"
-            value={formData.currency}
-            onChange={handleChange}
-            className="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-sm"
-          >
-            <option value="USD">USD ($)</option>
-            <option value="EUR">EUR (€)</option>
-            <option value="GBP">GBP (£)</option>
-            <option value="PKR">PKR (Rs)</option>
-          </select>
+          <label className="text-sm font-semibold text-gray-700">System Currency</label>
+          <input
+            type="text"
+            disabled
+            value={currentCurrency}
+            className="w-full p-2.5 bg-gray-100 border border-gray-200 rounded-xl text-gray-500 cursor-not-allowed text-sm"
+          />
+          <p className="text-xs text-gray-400">
+            Configured in system environment settings.
+          </p>
         </div>
 
         <div className="space-y-2">

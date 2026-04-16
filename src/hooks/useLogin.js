@@ -1,19 +1,24 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "./useAuth";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../redux/silces/authSlice";
 
 export const useLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("admin");
-  const { login } = useAuth();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email && password) {
-      login(email, role);
-      navigate("/dashboard");
+      const isSuccess = dispatch(loginUser(email, password));
+
+      if (isSuccess) {
+        navigate("/dashboard");
+      } else {
+        alert("Invalid email or password");
+      }
     }
   };
 
@@ -22,8 +27,6 @@ export const useLogin = () => {
     setEmail,
     password,
     setPassword,
-    role,
-    setRole,
     handleSubmit
   };
 };

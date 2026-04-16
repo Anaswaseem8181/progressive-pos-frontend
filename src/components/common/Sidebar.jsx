@@ -17,7 +17,7 @@ const Sidebar = () => {
 
   return (
     <>
-      {/* Mobile Hamburger Button */}
+
       <button
         className="md:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-md shadow-md"
         onClick={() => setIsOpen(!isOpen)}
@@ -25,7 +25,7 @@ const Sidebar = () => {
         {isOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
-      {/* Sidebar */}
+
       <aside
         className={cn(
           "fixed top-0 left-0 h-full w-64 bg-white border-r border-gray-200 flex flex-col transition-transform duration-300 z-40",
@@ -33,15 +33,16 @@ const Sidebar = () => {
           "md:translate-x-0 md:relative md:z-auto"
         )}
       >
-        {/* Logo */}
+
         <div className="p-6 flex items-center gap-3">
           <div className="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center text-white">
             <ShoppingCart size={24} />
           </div>
-          <h1 className="text-xl font-bold text-gray-900 tracking-tight">Progressive POS</h1>
+          <h1 className="text-xl font-bold text-gray-900 tracking-tight">
+            {user?.businessName || "Progressive POS"}
+          </h1>
         </div>
 
-        {/* Menu (scrollable) */}
         <nav className="flex-1 px-4 space-y-1 mt-4 overflow-y-auto">
           {filteredMenuItems.map((item) => {
             const IconComponent = Icons[item.icon];

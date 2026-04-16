@@ -1,12 +1,17 @@
 import { Search, Plus, ShoppingCart, Trash2, ChevronDown } from "lucide-react";
 import { motion } from "motion/react";
-import { products as initialProducts, customers } from "../../data/index";
+import { useProducts } from "../../hooks/useProducts";
+import { useCustomers } from "../../hooks/useCustomers";
 import { filterProducts } from "../../utils/productUtils";
 import { usePOS } from "../../hooks/usePOS";
+import { useCurrency } from "../../hooks/useCurrency";
 import { cn } from "../../lib/utils";
 
 const POS = () => {
+  const { products: initialProducts } = useProducts();
+  const { customers } = useCustomers();
   const { cart, search, setSearch, addToCart, removeFromCart, subtotal } = usePOS();
+  const { fmt } = useCurrency();
 
   return (
     <div className="flex flex-col lg:flex-row gap-8 h-full">
@@ -41,7 +46,7 @@ const POS = () => {
                     {product.name}
                   </h3>
                   <p className="text-xl font-bold text-gray-900 mt-1">
-                    Rs. {product.price.toFixed(2)}
+                    {fmt(product.price)}
                   </p>
                 </div>
                 <div className="mt-6 flex items-center justify-between">
@@ -107,12 +112,12 @@ const POS = () => {
                     {item.name}
                   </span>
                   <span className="text-xs text-gray-400">
-                    {item.quantity} x Rs. {item.price.toFixed(2)}
+                    {item.quantity} x {fmt(item.price)}
                   </span>
                 </div>
                 <div className="flex items-center gap-4">
                   <span className="text-sm font-bold text-gray-900">
-                    Rs. {(item.price * item.quantity).toFixed(2)}
+                    {fmt(item.price * item.quantity)}
                   </span>
                   <button
                     onClick={() => removeFromCart(item.id)}
@@ -130,7 +135,7 @@ const POS = () => {
           <div className="space-y-2">
             <div className="flex justify-between text-sm text-gray-500">
               <span>Subtotal</span>
-              <span className="font-bold">Rs. {subtotal.toFixed(2)}</span>
+              <span className="font-bold">{fmt(subtotal)}</span>
             </div>
             <div className="flex justify-between text-sm text-gray-500">
               <span>Discount (%)</span>
@@ -140,7 +145,7 @@ const POS = () => {
           <div className="pt-4 border-t border-gray-200 flex items-center justify-between">
             <span className="text-lg font-bold text-gray-900">Total</span>
             <span className="text-3xl font-bold text-emerald-600">
-              Rs. {subtotal.toFixed(2)}
+              {fmt(subtotal)}
             </span>
           </div>
           <button

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import SettingsForm from '../../components/dashboardComponents/settings/SettingsForm';
+import SettingsForm from '../../components/dashboard/settings/SettingsForm';
 
 const Settings = () => {
   return (

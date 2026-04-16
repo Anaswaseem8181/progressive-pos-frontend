@@ -1,16 +1,19 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { ProtectedRoute } from "./ProtectedRoute";
 import Login from "../pages/auth/Login";
-import Dashboard from "../pages/dashboardPage/Dashboard";
-import Landing from "../pages/Landing";
-import DemoPage from "../pages/DemoPage";
-import POS from "../pages/dashboardPage/POS";
-import Inventory from "../pages/dashboardPage/Inventory";
-import Customers from "../pages/dashboardPage/Customers";
-import Reports from "../pages/dashboardPage/Reports";
-import Users from "../pages/dashboardPage/Users";
-import Settings from "../pages/dashboardPage/Settings";
+import Register from "../pages/auth/Register";
+import PaymentPage from "../pages/subscription/PaymentPage";
+import Dashboard from "../pages/dashboard/Dashboard";
+import Landing from "../pages/landing/Landing";
+import DemoPage from "../pages/landing/DemoPage";
+import POS from "../pages/dashboard/POS";
+import Inventory from "../pages/dashboard/Inventory";
+import Customers from "../pages/dashboard/Customers";
+import Reports from "../pages/dashboard/Reports";
+import Users from "../pages/dashboard/Users";
+import Settings from "../pages/dashboard/Settings";
 import MainLayout from "../components/layout/MainLayout";
+import Subscription from "../pages/subscription/Subscription";
 
 export const AppRoutes = () => {
   return (
@@ -18,6 +21,9 @@ export const AppRoutes = () => {
       <Route path="/" element={<Landing />} />
       <Route path="/demo" element={<DemoPage />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/payment" element={<PaymentPage />} />
+      <Route path="/subscription" element={<Subscription />} />
 
       <Route element={<MainLayout />}>
         <Route path="/dashboard" element={

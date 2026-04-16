@@ -1,6 +1,6 @@
-import StatsCards from "../../components/dashboardComponents/StatsCards";
-import RecentSales from "../../components/dashboardComponents/RecentSales";
-import LowStockAlert from "../../components/dashboardComponents/LowStockAlert";
+import StatsCards from "../../components/dashboard/StatsCards";
+import RecentSales from "../../components/dashboard/RecentSales";
+import LowStockAlert from "../../components/dashboard/LowStockAlert";
 import { motion } from "motion/react";
 import { useAuth } from "../../hooks/useAuth";
 

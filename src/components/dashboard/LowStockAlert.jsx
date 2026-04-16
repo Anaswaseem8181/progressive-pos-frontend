@@ -1,7 +1,8 @@
-import { products } from "../../data";
+import { useProducts } from "../../hooks/useProducts";
 
 const LowStockAlert = () => {
-  const lowStockProducts = products.filter(p => p.stock < 10);
+  const { getLowStockProducts } = useProducts();
+  const lowStockProducts = getLowStockProducts();
 
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">

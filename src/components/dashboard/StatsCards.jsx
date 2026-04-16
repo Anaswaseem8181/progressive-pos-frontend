@@ -1,8 +1,15 @@
-import { products, customers, sales } from "../../data";
+import { useProducts } from "../../hooks/useProducts";
+import { useCustomers } from "../../hooks/useCustomers";
+import { useSales } from "../../hooks/useSales";
 import { getDashboardStats } from "../../utils/dashboardUtils";
+import { useCurrency } from "../../hooks/useCurrency";
 
 const StatsCards = () => {
-  const stats = getDashboardStats(products, customers, sales);
+  const { products } = useProducts();
+  const { customers } = useCustomers();
+  const { sales } = useSales();
+  const { currency } = useCurrency();
+  const stats = getDashboardStats(products, customers, sales, currency);
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

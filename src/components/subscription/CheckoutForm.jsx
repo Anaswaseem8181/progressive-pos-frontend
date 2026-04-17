@@ -19,8 +19,8 @@ const CheckoutForm = ({ plan, initialData }) => {
   const [name, setName] = useState(initialData?.name || "");
   const [email, setEmail] = useState(initialData?.email || "");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     if (!stripe || !elements) return;
 
     setStatus("loading");
@@ -41,7 +41,7 @@ const CheckoutForm = ({ plan, initialData }) => {
     }
 
     console.log("PaymentMethod created:", paymentMethod.id);
-    await new Promise((r) => setTimeout(r, 1800));
+    await new Promise((resolve) => setTimeout(resolve, 1800));
     setStatus("success");
   };
 
@@ -82,7 +82,7 @@ const CheckoutForm = ({ plan, initialData }) => {
           type="text"
           required
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={(event) => setName(event.target.value)}
           placeholder="John Doe"
           className="block w-full px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl text-sm font-semibold placeholder-slate-300 focus:outline-none focus:border-blue-600 focus:bg-white transition-all shadow-sm"
         />
@@ -94,7 +94,7 @@ const CheckoutForm = ({ plan, initialData }) => {
           type="email"
           required
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(event) => setEmail(event.target.value)}
           placeholder="john@example.com"
           className="block w-full px-5 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl text-sm font-semibold placeholder-slate-300 focus:outline-none focus:border-blue-600 focus:bg-white transition-all shadow-sm"
         />
@@ -109,9 +109,9 @@ const CheckoutForm = ({ plan, initialData }) => {
         >
           <CardElement
             options={CARD_ELEMENT_OPTIONS}
-            onChange={(e) => {
-              setCardComplete(e.complete);
-              if (e.error) setErrorMsg(e.error.message);
+            onChange={(event) => {
+              setCardComplete(event.complete);
+              if (event.error) setErrorMsg(event.error.message);
               else setErrorMsg("");
             }}
           />

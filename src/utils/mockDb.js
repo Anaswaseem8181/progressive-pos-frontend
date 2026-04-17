@@ -44,7 +44,7 @@ export const mockDb = {
   saveUser: (user) => {
     const users = mockDb.getUsers();
     // Check if user already exists
-    const index = users.findIndex(u => u.email === user.email);
+    const index = users.findIndex(dbUser => dbUser.email === user.email);
     if (index !== -1) {
       users[index] = { ...users[index], ...user };
     } else {
@@ -56,19 +56,19 @@ export const mockDb = {
 
   findUser: (email, password) => {
     const users = mockDb.getUsers();
-    return users.find(u => u.email === email && u.password === password);
+    return users.find(dbUser => dbUser.email === email && dbUser.password === password);
   },
 
   getStaffForAdmin: (adminEmail) => {
     const users = mockDb.getUsers();
     // Staff are users whose adminEmail matches the given adminEmail but they are NOT the admin themselves
     // OR just return everyone with that adminEmail if the admin wants to see themselves
-    return users.filter(u => u.adminEmail === adminEmail && u.role !== 'admin');
+    return users.filter(staffMember => staffMember.adminEmail === adminEmail && staffMember.role !== 'admin');
   },
 
   deleteUser: (email) => {
     const users = mockDb.getUsers();
-    const filtered = users.filter(u => u.email !== email);
+    const filtered = users.filter(dbUser => dbUser.email !== email);
     localStorage.setItem(USERS_KEY, JSON.stringify(filtered));
   }
 };

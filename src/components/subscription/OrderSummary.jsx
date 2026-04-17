@@ -34,12 +34,12 @@ const OrderSummary = ({ plan, registrationData, saasCurrency, handleBack }) => {
           </div>
 
           <ul className="space-y-4">
-            {plan?.features?.map((f, i) => (
-              <li key={i} className="flex items-center gap-4 group">
+            {plan?.features?.map((feature, index) => (
+              <li key={index} className="flex items-center gap-4 group">
                 <div className="w-5 h-5 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-400">
                   <CheckCircle2 size={14} strokeWidth={3} />
                 </div>
-                <span className="text-sm font-semibold tracking-wide text-slate-300">{f}</span>
+                <span className="text-sm font-semibold tracking-wide text-slate-300">{feature}</span>
               </li>
             ))}
           </ul>

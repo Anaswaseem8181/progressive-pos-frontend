@@ -38,25 +38,25 @@ const Customers = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {customers.map((c) => (
+        {customers.map((customer) => (
           <div
-            key={c.id}
+            key={customer.id}
             className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 flex flex-col justify-between hover:shadow-md transition-all"
           >
             <div className="flex items-start gap-4">
               <div className="w-12 h-12 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 font-bold text-lg">
-                {c.name.charAt(0)}
+                {customer.name.charAt(0)}
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900">{c.name}</h3>
+                <h3 className="text-lg font-bold text-gray-900">{customer.name}</h3>
                 <div className="flex flex-col gap-1 mt-1">
                   <div className="flex items-center gap-2 text-xs text-gray-400 font-medium">
                     <Phone size={12} />
-                    {c.phone}
+                    {customer.phone}
                   </div>
                   <div className="flex items-center gap-2 text-xs text-gray-400 font-medium">
                     <Mail size={12} />
-                    {c.email}
+                    {customer.email}
                   </div>
                 </div>
               </div>
@@ -71,7 +71,7 @@ const Customers = () => {
                 </button>
               </div>
               <span className="text-[10px] font-bold text-emerald-600 tracking-widest uppercase">
-                {c.status}
+                {customer.status}
               </span>
             </div>
           </div>

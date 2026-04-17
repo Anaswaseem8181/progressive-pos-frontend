@@ -9,8 +9,8 @@ export const useLogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
     if (email && password) {
       const isSuccess = dispatch(loginUser(email, password));
 

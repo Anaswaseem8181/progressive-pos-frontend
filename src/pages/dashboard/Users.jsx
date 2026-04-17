@@ -5,12 +5,15 @@ import { useAuth } from "../../hooks/useAuth";
 import { mockDb } from "../../utils/mockDb";
 import UsersTable from "../../components/dashboard/users/UsersTable";
 import { StaffModal } from "../../components/dashboard/users/StaffModal";
+import WarningModal from "../../components/modals/common/WarningModal";
 
 const Users = () => {
   const { user: currentUser } = useAuth();
   const [staffList, setStaffList] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingStaff, setEditingStaff] = useState(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [staffToDelete, setStaffToDelete] = useState(null);
 
   const loadStaff = () => {
     if (currentUser?.email) {
@@ -34,8 +37,15 @@ const Users = () => {
   };
 
   const handleDeleteStaff = (email) => {
-    if (window.confirm("Are you sure you want to delete this staff member?")) {
-      mockDb.deleteUser(email);
+    setStaffToDelete(email);
+    setShowDeleteModal(true);
+  };
+
+  const confirmDeleteStaff = () => {
+    if (staffToDelete) {
+      mockDb.deleteUser(staffToDelete);
+      setShowDeleteModal(false);
+      setStaffToDelete(null);
       loadStaff();
     }
   };
@@ -88,6 +98,16 @@ const Users = () => {
         onClose={() => setIsModalOpen(false)}
         onSave={handleSaveStaff}
         staff={editingStaff}
+      />
+
+      <WarningModal
+        isOpen={showDeleteModal}
+        onClose={() => setShowDeleteModal(false)}
+        onConfirm={confirmDeleteStaff}
+        title="Delete Staff Member?"
+        message={`Are you sure you want to remove this staff member? This will permanently revoke their access to ${currentUser?.businessName}.`}
+        confirmText="Delete Staff"
+        variant="danger"
       />
     </motion.div>
   );

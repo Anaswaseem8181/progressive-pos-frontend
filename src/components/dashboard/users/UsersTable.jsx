@@ -22,33 +22,33 @@ const UsersTable = ({ users, onEdit, onDelete }) => {
                 </td>
               </tr>
             ) : (
-              users.map((u) => (
-                <tr key={u.email} className="hover:bg-gray-50/50 transition-colors group">
+              users.map((user) => (
+                <tr key={user.email} className="hover:bg-gray-50/50 transition-colors group">
                   <td className="px-6 py-4">
-                    <span className="text-sm font-bold text-gray-900">{u.name}</span>
+                    <span className="text-sm font-bold text-gray-900">{user.name}</span>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="text-sm text-gray-500">{u.email}</span>
+                    <span className="text-sm text-gray-500">{user.email}</span>
                   </td>
                   <td className="px-6 py-4 text-center">
                     <span className={cn(
                       "px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase",
-                      u.role?.toLowerCase() === "admin" ? "bg-blue-50 text-blue-600" :
-                        u.role?.toLowerCase() === "manager" ? "bg-purple-50 text-purple-600" : "bg-green-100 text-green-600"
+                      user.role?.toLowerCase() === "admin" ? "bg-blue-50 text-blue-600" :
+                        user.role?.toLowerCase() === "manager" ? "bg-purple-50 text-purple-600" : "bg-green-100 text-green-600"
                     )}>
-                      {u.role}
+                      {user.role}
                     </span>
                   </td>
                   <td className="px-6 py-4 text-right">
                     <div className="flex items-center justify-end gap-2">
                       <button 
-                        onClick={() => onEdit(u)}
+                        onClick={() => onEdit(user)}
                         className="p-2 text-gray-400 hover:text-emerald-500 transition-colors"
                       >
                         <Edit2 size={16} />
                       </button>
                       <button 
-                        onClick={() => onDelete(u.email)}
+                        onClick={() => onDelete(user.email)}
                         className="p-2 text-gray-400 hover:text-red-500 transition-colors"
                       >
                         <Trash2 size={16} />

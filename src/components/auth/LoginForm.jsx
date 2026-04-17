@@ -39,7 +39,7 @@ const LoginForm = ({
               type="email"
               required
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(event) => setEmail(event.target.value)}
               className="block w-full pl-12 pr-4 py-4 bg-white border-2 border-slate-200 rounded-3xl text-sm font-semibold placeholder-slate-300 focus:outline-none focus:border-blue-600 transition-all shadow-sm"
               placeholder="admin@company.com"
             />
@@ -61,16 +61,11 @@ const LoginForm = ({
               type="password"
               required
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(event) => setPassword(event.target.value)}
               className="block w-full pl-12 pr-4 py-4 bg-white border-2 border-slate-200 rounded-3xl text-sm font-semibold placeholder-slate-300 focus:outline-none focus:border-blue-600 transition-all shadow-sm"
               placeholder="••••••••"
             />
           </div>
-        </div>
-
-        <div className="flex items-center mb-6">
-          <input type="checkbox" id="remember" className="w-5 h-5 rounded-lg border-2 border-slate-200 text-blue-600 focus:ring-blue-500" />
-          <label htmlFor="remember" className="ml-3 text-sm font-bold text-slate-600 cursor-pointer">Stay signed in for 30 days</label>
         </div>
 
         <button
@@ -91,6 +86,13 @@ const LoginForm = ({
           )}
         </button>
       </form>
+
+      <div className="mt-8 text-center text-sm font-bold text-slate-500">
+        Don&apos;t have an account?{" "}
+        <Link to="/register" className="text-blue-600 hover:text-blue-700 hover:underline transition-colors">
+          Create Account
+        </Link>
+      </div>
     </motion.div>
   );
 };

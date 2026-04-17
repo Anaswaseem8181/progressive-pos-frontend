@@ -118,7 +118,7 @@ const DemoPage = () => {
               animate={{ scale: 1 }}
               exit={{ scale: 0.95 }}
               className="relative max-w-6xl w-full max-h-[90vh] flex flex-col bg-white rounded-2xl overflow-hidden shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
+              onClick={(event) => event.stopPropagation()}
             >
               <div className="bg-slate-50 border-b border-slate-100 px-6 py-4 flex items-center justify-between shrink-0">
                 <div>

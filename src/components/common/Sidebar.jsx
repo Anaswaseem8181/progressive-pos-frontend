@@ -5,10 +5,12 @@ import { menuItems } from "../../data";
 import * as Icons from "lucide-react";
 import { cn } from "../../lib/utils";
 import { LogOut, ShoppingCart, Menu, X } from "lucide-react";
+import WarningModal from "../modals/common/WarningModal";
 
 const Sidebar = () => {
   const { user, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const filteredMenuItems = React.useMemo(() => {
     if (!user?.role) return [];
@@ -77,7 +79,7 @@ const Sidebar = () => {
             <p className="text-xs text-emerald-600 font-medium capitalize">{user?.role}</p>
           </div>
           <button
-            onClick={logout}
+            onClick={() => setShowLogoutModal(true)}
             className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
           >
             <LogOut size={20} />
@@ -85,6 +87,16 @@ const Sidebar = () => {
           </button>
         </div>
       </aside>
+
+      <WarningModal
+        isOpen={showLogoutModal}
+        onClose={() => setShowLogoutModal(false)}
+        onConfirm={logout}
+        title="Confirm Logout"
+        message="Are you sure you want to end your session? You will need to login again to access your dashboard."
+        confirmText="Logout"
+        variant="danger"
+      />
 
       {/* Overlay for mobile when sidebar is open */}
       {isOpen && (

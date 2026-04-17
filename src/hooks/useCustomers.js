@@ -5,7 +5,7 @@ export const useCustomers = () => {
   const customers = useMemo(() => initialCustomers, []);
 
   const getCustomerById = (id) => {
-    return customers.find((c) => c.id === id);
+    return customers.find((customer) => customer.id === id);
   };
 
   return {

@@ -1,12 +1,27 @@
+import React, { useState } from "react";
 import { Plus, Edit2, Trash2, Search } from "lucide-react";
 import { motion } from "motion/react";
 import { useProducts } from "../../hooks/useProducts";
 import { cn } from "../../lib/utils";
 import { useCurrency } from "../../hooks/useCurrency";
+import WarningModal from "../../components/modals/common/WarningModal";
 
 const Inventory = () => {
   const { products } = useProducts();
   const { fmt } = useCurrency();
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [productToDelete, setProductToDelete] = useState(null);
+
+  const handleDeleteClick = (product) => {
+    setProductToDelete(product);
+    setShowDeleteModal(true);
+  };
+
+  const confirmDelete = () => {
+    console.log("Deleting product:", productToDelete?.name);
+    setShowDeleteModal(false);
+    setProductToDelete(null);
+  };
 
   return (
     <motion.div
@@ -50,28 +65,28 @@ const Inventory = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-50">
-              {products.map((p) => (
-                <tr key={p.id} className="hover:bg-gray-50/50 transition-colors group">
+              {products.map((product) => (
+                <tr key={product.id} className="hover:bg-gray-50/50 transition-colors group">
                   <td className="px-6 py-4">
-                    <span className="text-sm font-bold text-gray-900">{p.name}</span>
+                    <span className="text-sm font-bold text-gray-900">{product.name}</span>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="text-sm text-gray-500 font-medium">{p.category}</span>
+                    <span className="text-sm text-gray-500 font-medium">{product.category}</span>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="text-sm font-bold text-gray-900">{fmt(p.price)}</span>
+                    <span className="text-sm font-bold text-gray-900">{fmt(product.price)}</span>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className={cn("text-sm font-bold", p.stock < 10 ? "text-orange-600" : "text-gray-900")}>
-                      {p.stock}
+                    <span className={cn("text-sm font-bold", product.stock < 10 ? "text-orange-600" : "text-gray-900")}>
+                      {product.stock}
                     </span>
                   </td>
                   <td className="px-6 py-4 text-center">
                     <span className={cn(
                       "px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider",
-                      p.status === "IN STOCK" ? "bg-emerald-50 text-emerald-600" : "bg-orange-50 text-orange-600"
+                      product.status === "IN STOCK" ? "bg-emerald-50 text-emerald-600" : "bg-orange-50 text-orange-600"
                     )}>
-                      {p.status}
+                      {product.status}
                     </span>
                   </td>
                   <td className="px-6 py-4 text-right">
@@ -79,7 +94,10 @@ const Inventory = () => {
                       <button className="p-2 text-gray-400 hover:text-emerald-500 transition-colors">
                         <Edit2 size={16} />
                       </button>
-                      <button className="p-2 text-gray-400 hover:text-red-500 transition-colors">
+                      <button
+                        onClick={() => handleDeleteClick(product)}
+                        className="p-2 text-gray-400 hover:text-red-500 transition-colors"
+                      >
                         <Trash2 size={16} />
                       </button>
                     </div>
@@ -90,6 +108,16 @@ const Inventory = () => {
           </table>
         </div>
       </div>
+
+      <WarningModal
+        isOpen={showDeleteModal}
+        onClose={() => setShowDeleteModal(false)}
+        onConfirm={confirmDelete}
+        title="Delete Product?"
+        message={`Are you sure you want to delete "${productToDelete?.name}"? This will remove it from your inventory and POS system.`}
+        confirmText="Delete Product"
+        variant="danger"
+      />
     </motion.div>
   );
 };

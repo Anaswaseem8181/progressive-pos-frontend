@@ -32,12 +32,12 @@ const RegisterBrandPanel = () => {
           </p>
 
           <div className="space-y-6">
-            {REGISTER_FEATURES.map((feature, idx) => (
+            {REGISTER_FEATURES.map((feature, index) => (
               <motion.div
-                key={idx}
+                key={index}
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 + (idx * 0.1) }}
+                transition={{ duration: 0.5, delay: 0.4 + (index * 0.1) }}
                 className="flex items-center gap-4 group"
               >
                 <div className="w-6 h-6 rounded-full bg-blue-400/30 flex items-center justify-center text-blue-200 group-hover:bg-blue-400/50 transition-colors duration-300">
@@ -52,8 +52,8 @@ const RegisterBrandPanel = () => {
 
       <div className="relative z-10 pt-12 border-t border-white/10 flex items-center gap-6">
         <div className="flex -space-x-3">
-          {[1, 2, 3, 4].map(i => (
-            <div key={i} className="w-10 h-10 rounded-full border-2 border-indigo-600 bg-indigo-500" />
+          {[1, 2, 3, 4].map((avatar, index) => (
+            <div key={index} className="w-10 h-10 rounded-full border-2 border-indigo-600 bg-indigo-500" />
           ))}
         </div>
         <p className="text-blue-100 text-sm font-medium">

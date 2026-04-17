@@ -5,11 +5,11 @@ export const useProducts = () => {
   const products = useMemo(() => initialProducts, []);
 
   const getProductById = (id) => {
-    return products.find((p) => p.id === id);
+    return products.find((product) => product.id === id);
   };
 
   const getLowStockProducts = () => {
-    return products.filter((p) => p.stock < 10);
+    return products.filter((product) => product.stock < 10);
   };
 
   return {

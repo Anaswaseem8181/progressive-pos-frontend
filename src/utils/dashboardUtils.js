@@ -2,8 +2,8 @@ import { DollarSign, Package, AlertTriangle, Users } from "lucide-react";
 import { formatPrice } from "./currencyUtils";
 
 export const getDashboardStats = (products, customers, sales, currency = "PKR") => {
-  const totalRevenue = sales.reduce((acc, sale) => acc + sale.amount, 0);
-  const lowStockCount = products.filter(p => p.stock < 10).length;
+  const totalRevenue = sales.reduce((revenueSum, sale) => revenueSum + sale.amount, 0);
+  const lowStockCount = products.filter(product => product.stock < 10).length;
 
   return [
     {

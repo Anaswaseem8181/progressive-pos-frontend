@@ -5,7 +5,7 @@ import { ArrowLeft, Building2, User, Mail, Lock, Phone, Globe, Loader2 } from "l
 import { InputField } from "../ui/InputField";
 import { SelectField } from "../ui/SelectField";
 import AuthHeader from "../common/AuthHeader";
-import WarningModal from "../common/WarningModal";
+import WarningModal from "../modals/common/WarningModal";
 
 /**
  * RegisterForm - Presentational component for the right panel of the registration page.
@@ -98,6 +98,13 @@ const RegisterForm = ({
             </button>
           </div>
         </form>
+
+        <div className="mt-8 text-center text-sm font-bold text-slate-500">
+          Already have an account?{" "}
+          <Link to="/login" className="text-blue-600 hover:text-blue-700 hover:underline transition-colors">
+            Sign In
+          </Link>
+        </div>
 
         <p className="mt-8 text-center text-slate-400 text-xs font-medium">
           By signing up, you agree to our <Link to="#" className="text-blue-600 hover:underline">Terms of Service</Link> and <Link to="#" className="text-blue-600 hover:underline">Privacy Policy</Link>.

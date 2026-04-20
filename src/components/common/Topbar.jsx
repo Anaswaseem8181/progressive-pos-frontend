@@ -1,8 +1,9 @@
+import { Menu } from "lucide-react";
 import { useAuth } from "../../hooks/useAuth";
 import { useLocation } from "react-router-dom";
 import { menuItems } from "../../data";
 
-const Topbar = () => {
+const Topbar = ({ onToggleSidebar }) => {
   const { user } = useAuth();
   const location = useLocation();
 
@@ -11,6 +12,12 @@ const Topbar = () => {
   return (
     <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6 shrink-0">
       <div className="flex items-center gap-4">
+        <button
+          onClick={onToggleSidebar}
+          className="md:hidden p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+        >
+          <Menu size={24} />
+        </button>
         <h2 className="text-lg font-semibold text-gray-800">
           {currentPage ? currentPage.name : "Dashboard"}
         </h2>

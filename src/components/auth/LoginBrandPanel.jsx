@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 import { ShoppingCart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import BackgroundDecoration from "../common/BackgroundDecoration";
-import { LOGIN_BENEFITS } from "../../data";
+import { loginBenefits } from "../../data";
 
 const LoginBrandPanel = () => {
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ const LoginBrandPanel = () => {
           </p>
 
           <div className="space-y-4">
-            {LOGIN_BENEFITS.map((benefit, idx) => {
+            {loginBenefits.map((benefit, idx) => {
               const Icon = benefit.icon;
               return (
                 <div key={idx} className="flex items-center gap-3 text-slate-300 font-bold">

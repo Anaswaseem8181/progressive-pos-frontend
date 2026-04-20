@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import { TwitterIcon } from '../../assets/icons/common/footer/TwitterIcon';
-import { GithubIcon } from '../../assets/icons/common/footer/GithubIcon';
+import { TwitterIcon } from '../../assets/icons/svg/TwitterIcon';
+import { GithubIcon } from '../../assets/icons/svg/GithubIcon';
 import { useAuth } from '../../hooks/useAuth';
 
 const Footer = () => {

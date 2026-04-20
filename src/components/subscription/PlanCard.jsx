@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "motion/react";
 import { Check, Zap, Rocket, Star } from "lucide-react";
 

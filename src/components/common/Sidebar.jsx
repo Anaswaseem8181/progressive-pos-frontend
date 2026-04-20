@@ -5,11 +5,10 @@ import { menuItems } from "../../data";
 import * as Icons from "lucide-react";
 import { cn } from "../../lib/utils";
 import { LogOut, ShoppingCart, Menu, X } from "lucide-react";
-import WarningModal from "../modals/common/WarningModal";
+import WarningModal from "modals/common/WarningModal";
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen, setIsOpen }) => {
   const { user, logout } = useAuth();
-  const [isOpen, setIsOpen] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const filteredMenuItems = React.useMemo(() => {
@@ -19,15 +18,6 @@ const Sidebar = () => {
 
   return (
     <>
-
-      <button
-        className="md:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-md shadow-md"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        {isOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
-
-
       <aside
         className={cn(
           "fixed top-0 left-0 h-full w-64 bg-white border-r border-gray-200 flex flex-col transition-transform duration-300 z-40",
@@ -35,14 +25,21 @@ const Sidebar = () => {
           "md:translate-x-0 md:relative md:z-auto"
         )}
       >
-
-        <div className="p-6 flex items-center gap-3">
-          <div className="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center text-white">
-            <ShoppingCart size={24} />
+        <div className="p-6 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center text-white">
+              <ShoppingCart size={24} />
+            </div>
+            <h1 className="text-xl font-bold text-gray-900 tracking-tight">
+              {user?.businessName || "Progressive POS"}
+            </h1>
           </div>
-          <h1 className="text-xl font-bold text-gray-900 tracking-tight">
-            {user?.businessName || "Progressive POS"}
-          </h1>
+          <button 
+            onClick={() => setIsOpen(false)}
+            className="md:hidden p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100 transition-colors"
+          >
+            <X size={20} />
+          </button>
         </div>
 
         <nav className="flex-1 px-4 space-y-1 mt-4 overflow-y-auto">

@@ -19,4 +19,24 @@
 
 body {
   font-family: var(--font-sans);
+  @apply antialiased scroll-smooth;
+}
+
+/* Custom Professional Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-slate-200 rounded-full hover:bg-slate-300 transition-colors;
+}
+
+/* Firefox Support */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-slate-200) transparent;
 }

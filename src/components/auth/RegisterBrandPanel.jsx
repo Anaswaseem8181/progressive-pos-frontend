@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "motion/react";
 import { ShoppingCart, CheckCircle2 } from "lucide-react";
 import BackgroundDecoration from "../common/BackgroundDecoration";
-import { REGISTER_FEATURES } from "../../data";
+import { registerFeatures } from "../../data";
 
 /**
  * RegisterBrandPanel - Presentational component for the left panel of the registration page.
@@ -32,7 +32,7 @@ const RegisterBrandPanel = () => {
           </p>
 
           <div className="space-y-6">
-            {REGISTER_FEATURES.map((feature, index) => (
+            {registerFeatures.map((feature, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, x: -10 }}

@@ -1,37 +1,45 @@
+import { sales as initialSales } from "../data";
+
 const USERS_KEY = "pos_all_users";
+const SALES_KEY = "pos_all_sales";
 
 // Initialize with demo data if empty
 const initializeDb = () => {
-  const existing = localStorage.getItem(USERS_KEY);
-  if (!existing) {
+  const existingUsers = localStorage.getItem(USERS_KEY);
+  if (!existingUsers) {
     const defaultUsers = [
-      { 
-        email: "admin@gmail.com", 
-        password: "admin", 
-        name: "Demo Admin", 
-        businessName: "Progressive POS", 
+      {
+        email: "admin@gmail.com",
+        password: "admin",
+        name: "Demo Admin",
+        businessName: "Progressive POS",
         role: "admin",
         adminEmail: "admin@gmail.com",
         currency: "PKR"
       },
-      { 
-        email: "manager@gmail.com", 
-        password: "manager", 
-        name: "Demo Manager", 
-        businessName: "Progressive POS", 
+      {
+        email: "manager@gmail.com",
+        password: "manager",
+        name: "Demo Manager",
+        businessName: "Progressive POS",
         role: "manager",
         adminEmail: "admin@gmail.com"
       },
-      { 
-        email: "cashier@gmail.com", 
-        password: "cashier", 
-        name: "Demo Cashier", 
-        businessName: "Progressive POS", 
+      {
+        email: "cashier@gmail.com",
+        password: "cashier",
+        name: "Demo Cashier",
+        businessName: "Progressive POS",
         role: "cashier",
         adminEmail: "admin@gmail.com"
       }
     ];
     localStorage.setItem(USERS_KEY, JSON.stringify(defaultUsers));
+  }
+
+  const existingSales = localStorage.getItem(SALES_KEY);
+  if (!existingSales) {
+    localStorage.setItem(SALES_KEY, JSON.stringify(initialSales));
   }
 };
 
@@ -61,8 +69,6 @@ export const mockDb = {
 
   getStaffForAdmin: (adminEmail) => {
     const users = mockDb.getUsers();
-    // Staff are users whose adminEmail matches the given adminEmail but they are NOT the admin themselves
-    // OR just return everyone with that adminEmail if the admin wants to see themselves
     return users.filter(staffMember => staffMember.adminEmail === adminEmail && staffMember.role !== 'admin');
   },
 
@@ -70,5 +76,23 @@ export const mockDb = {
     const users = mockDb.getUsers();
     const filtered = users.filter(dbUser => dbUser.email !== email);
     localStorage.setItem(USERS_KEY, JSON.stringify(filtered));
+  },
+
+  // Sales/Orders
+  getSales: () => {
+    initializeDb();
+    return JSON.parse(localStorage.getItem(SALES_KEY) || "[]");
+  },
+
+  saveSale: (sale) => {
+    const sales = mockDb.getSales();
+    const newSale = {
+      ...sale,
+      id: sales.length > 0 ? Math.max(...sales.map(s => s.id)) + 1 : 1,
+      date: new Date().toLocaleString()
+    };
+    sales.unshift(newSale); // Newest first
+    localStorage.setItem(SALES_KEY, JSON.stringify(sales));
+    return newSale;
   }
 };

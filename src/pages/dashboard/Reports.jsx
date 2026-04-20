@@ -5,7 +5,7 @@ import { useCurrency } from "../../hooks/useCurrency";
 
 const Reports = () => {
   const { sales, topSelling, getTotalRevenue } = useSales();
-  const { fmt } = useCurrency();
+  const { formatCurrency } = useCurrency();
   const totalRevenue = getTotalRevenue();
 
   return (
@@ -38,7 +38,7 @@ const Reports = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
           <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Total Revenue</p>
-          <h3 className="text-2xl font-bold text-emerald-600">{fmt(totalRevenue)}</h3>
+          <h3 className="text-2xl font-bold text-emerald-600">{formatCurrency(totalRevenue)}</h3>
           <span className="text-[10px] text-gray-400 font-medium mt-1">For selected period</span>
         </div>
         <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
@@ -48,7 +48,7 @@ const Reports = () => {
         </div>
         <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm">
           <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Total Discounts</p>
-          <h3 className="text-2xl font-bold text-orange-600">{fmt(3020)}</h3>
+          <h3 className="text-2xl font-bold text-orange-600">{formatCurrency(3020)}</h3>
           <span className="text-[10px] text-gray-400 font-medium mt-1">Savings given to customers</span>
         </div>
       </div>
@@ -75,7 +75,7 @@ const Reports = () => {
                     </div>
                   </div>
                   <div className="text-right">
-                    <span className="text-2xl font-bold text-emerald-600">{fmt(order.amount)}</span>
+                    <span className="text-2xl font-bold text-emerald-600">{formatCurrency(order.amount)}</span>
                   </div>
                 </div>
                 <div className="space-y-3 pt-6 border-t border-gray-100">
@@ -83,12 +83,12 @@ const Reports = () => {
                   {order.items.map((item, idx) => (
                     <div key={idx} className="flex justify-between text-sm">
                       <span className="text-gray-600 font-medium">{item.name} x {item.qty}</span>
-                      <span className="text-gray-900 font-bold">{fmt(item.price)}</span>
+                      <span className="text-gray-900 font-bold">{formatCurrency(item.price)}</span>
                     </div>
                   ))}
                   <div className="flex justify-between pt-3 border-t border-gray-100">
                     <span className="text-xs font-bold text-gray-500 uppercase">Subtotal</span>
-                    <span className="text-sm font-bold text-gray-900">{fmt(order.amount)}</span>
+                    <span className="text-sm font-bold text-gray-900">{formatCurrency(order.amount)}</span>
                   </div>
                 </div>
               </div>
@@ -111,7 +111,7 @@ const Reports = () => {
                   </div>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm font-bold text-emerald-600">{fmt(p.revenue)}</p>
+                  <p className="text-sm font-bold text-emerald-600">{formatCurrency(p.revenue)}</p>
                   <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Revenue</p>
                 </div>
               </div>

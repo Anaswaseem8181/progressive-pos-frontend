@@ -5,7 +5,7 @@ import { ArrowLeft, Building2, User, Mail, Lock, Phone, Globe, Loader2 } from "l
 import { InputField } from "../ui/InputField";
 import { SelectField } from "../ui/SelectField";
 import AuthHeader from "../common/AuthHeader";
-import WarningModal from "../modals/common/WarningModal";
+import WarningModal from "modals/common/WarningModal";
 
 /**
  * RegisterForm - Presentational component for the right panel of the registration page.
@@ -64,7 +64,7 @@ const RegisterForm = ({
             name="businessCategory"
             register={register}
             errors={errors}
-            options={["Clothing", "Electronics", "Groceries", "Pharmacy", "Restaurant", "Others"]}
+            options={["Clothing"]}
           />
           <div className="md:col-span-2">
             <InputField label="Store Address" name="storeAddress" register={register} errors={errors} icon={<Globe size={18} />} placeholder="123 Street, City, Country" />

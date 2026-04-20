@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { motion } from "motion/react";
 import { CheckCircle2, CreditCard, Lock, Loader2 } from "lucide-react";
-import { CARD_ELEMENT_OPTIONS } from "../../data";
+import { cardElementOptions } from "../../data";
 
 /**
  * CheckoutForm - Computational & Presentational component for the Stripe payment form.
@@ -108,7 +108,7 @@ const CheckoutForm = ({ plan, initialData }) => {
           }`}
         >
           <CardElement
-            options={CARD_ELEMENT_OPTIONS}
+            options={cardElementOptions}
             onChange={(event) => {
               setCardComplete(event.complete);
               if (event.error) setErrorMsg(event.error.message);

@@ -4,11 +4,11 @@ import { motion } from "motion/react";
 import { useProducts } from "../../hooks/useProducts";
 import { cn } from "../../lib/utils";
 import { useCurrency } from "../../hooks/useCurrency";
-import WarningModal from "../../components/modals/common/WarningModal";
+import WarningModal from "modals/common/WarningModal";
 
 const Inventory = () => {
   const { products } = useProducts();
-  const { fmt } = useCurrency();
+  const { formatCurrency } = useCurrency();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [productToDelete, setProductToDelete] = useState(null);
 
@@ -74,7 +74,7 @@ const Inventory = () => {
                     <span className="text-sm text-gray-500 font-medium">{product.category}</span>
                   </td>
                   <td className="px-6 py-4">
-                    <span className="text-sm font-bold text-gray-900">{fmt(product.price)}</span>
+                    <span className="text-sm font-bold text-gray-900">{formatCurrency(product.price)}</span>
                   </td>
                   <td className="px-6 py-4 text-center">
                     <span className={cn("text-sm font-bold", product.stock < 10 ? "text-orange-600" : "text-gray-900")}>

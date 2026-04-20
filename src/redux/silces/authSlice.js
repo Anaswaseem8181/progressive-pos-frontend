@@ -11,17 +11,17 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      const { email, role, businessName, currency } = action.payload;
-
-      const name = email.split("@")[0] || "User";
+      const { email, role, businessName, currency, name, storeAddress, contactNumber } = action.payload;
 
       const user = {
-        id: Math.random().toString(36).substr(2, 9),
-        name: name.charAt(0).toUpperCase() + name.slice(1),
+        id: action.payload.id || Math.random().toString(36).substr(2, 9),
+        name: name || (email.split("@")[0].charAt(0).toUpperCase() + email.split("@")[0].slice(1)),
         email,
         role,
         businessName: businessName || "Progressive POS",
         currency: currency || "PKR",
+        storeAddress: storeAddress || "123 Tech Avenue, Silicon Valley",
+        contactNumber: contactNumber || "+1 (555) 000-1234"
       };
 
       state.user = user;

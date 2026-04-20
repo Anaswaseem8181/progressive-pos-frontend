@@ -4,16 +4,14 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { Lock } from "lucide-react";
 import { useAuth } from "../../hooks/useAuth";
-import WarningModal from "../../components/common/WarningModal";
+import WarningModal from "modals/common/WarningModal";
 import AuthSplitLayout from "../../components/common/AuthSplitLayout";
 import AuthHeader from "../../components/common/AuthHeader";
 import BackgroundDecoration from "../../components/common/BackgroundDecoration";
 import OrderSummary from "../../components/subscription/OrderSummary";
 import CheckoutForm from "../../components/subscription/CheckoutForm";
 
-const STRIPE_PUBLISHABLE_KEY =
-  "pk_test_51TM83yRfqowv8wtXq1ygPxmo5iUAYMg7RImx0u51aBEOHnayyJi8B6BQ0etmCVCJkuxCUnG8fea4sNfnHgPZRfyz00PoUkCG7h";
-
+const STRIPE_PUBLISHABLE_KEY = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
 const stripePromise = loadStripe(STRIPE_PUBLISHABLE_KEY);
 
 const PaymentPage = () => {

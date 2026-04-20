@@ -3,7 +3,7 @@ import { useCurrency } from "../../hooks/useCurrency";
 
 const RecentSales = () => {
   const { sales } = useSales();
-  const { fmt } = useCurrency();
+  const { formatCurrency } = useCurrency();
 
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
@@ -17,7 +17,7 @@ const RecentSales = () => {
               </span>
               <span className="text-xs text-gray-400 font-medium">{sale.date}</span>
             </div>
-            <span className="text-sm font-bold text-emerald-600">{fmt(sale.amount)}</span>
+            <span className="text-sm font-bold text-emerald-600">{formatCurrency(sale.amount)}</span>
           </div>
         ))}
       </div>

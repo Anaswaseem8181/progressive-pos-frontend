@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { Lock, Mail, Loader2, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import AuthHeader from "../common/AuthHeader";
+import { InputField } from "../ui/InputField";
 
 const LoginForm = ({
   email,
@@ -27,46 +28,27 @@ const LoginForm = ({
       />
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="group">
-          <label className="block text-xs font-black text-slate-400 uppercase tracking-widest mb-3 transition-colors group-focus-within:text-blue-600">
-            Business Email
-          </label>
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-600 transition-colors">
-              <Mail size={18} />
-            </div>
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              className="block w-full pl-12 pr-4 py-4 bg-white border-2 border-slate-200 rounded-3xl text-sm font-semibold placeholder-slate-300 focus:outline-none focus:border-blue-600 transition-all shadow-sm"
-              placeholder="admin@company.com"
-            />
-          </div>
-        </div>
+        <InputField
+          label="Business Email"
+          name="email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          icon={<Mail size={18} />}
+          placeholder="admin@company.com"
+          required
+        />
 
-        <div className="group">
-          <div className="flex justify-between mb-3">
-            <label className="block text-xs font-black text-slate-400 uppercase tracking-widest transition-colors group-focus-within:text-blue-600">
-              Password
-            </label>
-            <Link to="#" className="text-xs font-bold text-blue-600 hover:underline">Forgot password?</Link>
-          </div>
-          <div className="relative">
-            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-600 transition-colors">
-              <Lock size={18} />
-            </div>
-            <input
-              type="password"
-              required
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              className="block w-full pl-12 pr-4 py-4 bg-white border-2 border-slate-200 rounded-3xl text-sm font-semibold placeholder-slate-300 focus:outline-none focus:border-blue-600 transition-all shadow-sm"
-              placeholder="••••••••"
-            />
-          </div>
-        </div>
+        <InputField
+          label="Password"
+          name="password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          icon={<Lock size={18} />}
+          placeholder="••••••••"
+          required
+        />
 
         <button
           type="submit"

@@ -2,14 +2,6 @@ import React, { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { cn } from "../../lib/utils";
 
-/**
- * InputField - Reusable input component with support for:
- * - Icons (left side)
- * - Password visibility toggle
- * - Placeholder
- * - React Hook Form (register)
- * - Manual state (value/onChange)
- */
 export const InputField = ({
   label,
   name,
@@ -40,14 +32,14 @@ export const InputField = ({
           {label}
         </label>
       )}
-      
+
       <div className="relative">
         {Icon && (
           <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400 group-focus-within:text-blue-600 transition-colors">
             {Icon}
           </div>
         )}
-        
+
         <input
           type={inputType}
           placeholder={placeholder}

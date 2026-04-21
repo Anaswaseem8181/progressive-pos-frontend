@@ -5,10 +5,11 @@ import { menuItems } from "../../data";
 import * as Icons from "lucide-react";
 import { cn } from "../../lib/utils";
 import { LogOut, ShoppingCart, Menu, X } from "lucide-react";
+import WarningModal from "modals/common/WarningModal";
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen, setIsOpen }) => {
   const { user, logout } = useAuth();
-  const [isOpen, setIsOpen] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
 
   const filteredMenuItems = React.useMemo(() => {
     if (!user?.role) return [];
@@ -17,15 +18,6 @@ const Sidebar = () => {
 
   return (
     <>
-      {/* Mobile Hamburger Button */}
-      <button
-        className="md:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-md shadow-md"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        {isOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
-
-      {/* Sidebar */}
       <aside
         className={cn(
           "fixed top-0 left-0 h-full w-64 bg-white border-r border-gray-200 flex flex-col transition-transform duration-300 z-40",
@@ -33,15 +25,23 @@ const Sidebar = () => {
           "md:translate-x-0 md:relative md:z-auto"
         )}
       >
-        {/* Logo */}
-        <div className="p-6 flex items-center gap-3">
-          <div className="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center text-white">
-            <ShoppingCart size={24} />
+        <div className="p-6 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center text-white">
+              <ShoppingCart size={24} />
+            </div>
+            <h1 className="text-xl font-bold text-gray-900 tracking-tight">
+              {user?.businessName || "Progressive POS"}
+            </h1>
           </div>
-          <h1 className="text-xl font-bold text-gray-900 tracking-tight">Progressive POS</h1>
+          <button 
+            onClick={() => setIsOpen(false)}
+            className="md:hidden p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100 transition-colors"
+          >
+            <X size={20} />
+          </button>
         </div>
 
-        {/* Menu (scrollable) */}
         <nav className="flex-1 px-4 space-y-1 mt-4 overflow-y-auto">
           {filteredMenuItems.map((item) => {
             const IconComponent = Icons[item.icon];
@@ -76,7 +76,7 @@ const Sidebar = () => {
             <p className="text-xs text-emerald-600 font-medium capitalize">{user?.role}</p>
           </div>
           <button
-            onClick={logout}
+            onClick={() => setShowLogoutModal(true)}
             className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
           >
             <LogOut size={20} />
@@ -84,6 +84,16 @@ const Sidebar = () => {
           </button>
         </div>
       </aside>
+
+      <WarningModal
+        isOpen={showLogoutModal}
+        onClose={() => setShowLogoutModal(false)}
+        onConfirm={logout}
+        title="Confirm Logout"
+        message="Are you sure you want to end your session? You will need to login again to access your dashboard."
+        confirmText="Logout"
+        variant="danger"
+      />
 
       {/* Overlay for mobile when sidebar is open */}
       {isOpen && (

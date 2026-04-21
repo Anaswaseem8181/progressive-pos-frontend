@@ -1,4 +1,4 @@
-import { DollarSign, Package, AlertTriangle, Users, CloudUpload, PackageSearch, Smartphone, WifiOff, TrendingUp, ShieldCheck, Zap, ShoppingCart, LineChart, FileDown, Star } from "lucide-react";
+import { DollarSign, Package, AlertTriangle, Users, CloudUpload, PackageSearch, Smartphone, WifiOff, TrendingUp, ShieldCheck, Zap, ShoppingCart, LineChart, FileDown, Star, Globe } from "lucide-react";
 import adminDashboard from "../assets/images/demoPageImages/AdminDashboard.png";
 import managerDashboard from "../assets/images/demoPageImages/ManagerDashboard.png";
 import cashierDashboard from "../assets/images/demoPageImages/CashierDashboard.png";
@@ -6,12 +6,16 @@ import productCart from "../assets/images/demoPageImages/ProductCart.png";
 import inventory from "../assets/images/demoPageImages/Inventory.png";
 
 export const products = [
-  { id: 1, name: "Chicken", category: "Groceries", price: 800, stock: 57, status: "IN STOCK" },
-  { id: 2, name: "Jeans", category: "Clothing", price: 2050, stock: 27, status: "IN STOCK" },
-  { id: 3, name: "Shirt", category: "Clothing", price: 1020, stock: 6, status: "LOW STOCK" },
-  { id: 4, name: "Milk", category: "Groceries", price: 150, stock: 12, status: "IN STOCK" },
-  { id: 5, name: "Bread", category: "Groceries", price: 60, stock: 4, status: "LOW STOCK" },
-  { id: 6, name: "Rusk", category: "Groceries", price: 20, stock: 5, status: "LOW STOCK" },
+  { id: 1, name: "Jeans", category: "Clothing", price: 2050, stock: 27, status: "IN STOCK" },
+  { id: 2, name: "Shirt", category: "Clothing", price: 1020, stock: 6, status: "LOW STOCK" },
+  { id: 3, name: "T-Shirt", category: "Clothing", price: 750, stock: 30, status: "IN STOCK" },
+  { id: 4, name: "Jacket", category: "Clothing", price: 3500, stock: 10, status: "IN STOCK" },
+  { id: 5, name: "Hoodie", category: "Clothing", price: 2500, stock: 8, status: "LOW STOCK" },
+  { id: 6, name: "Sweater", category: "Clothing", price: 1800, stock: 15, status: "IN STOCK" },
+  { id: 7, name: "Kurta", category: "Clothing", price: 2200, stock: 12, status: "IN STOCK" },
+  { id: 8, name: "Shorts", category: "Clothing", price: 900, stock: 20, status: "IN STOCK" },
+  { id: 9, name: "Blazer", category: "Clothing", price: 4200, stock: 5, status: "LOW STOCK" },
+  { id: 10, name: "Tracksuit", category: "Clothing", price: 3000, stock: 9, status: "LOW STOCK" },
 ];
 
 export const customers = [
@@ -65,8 +69,36 @@ export const menuItems = [
   { name: "Inventory", path: "/inventory", roles: ["admin"], icon: "Package" },
   { name: "Customers", path: "/customers", roles: ["admin", "manager", "cashier"], icon: "Users" },
   { name: "Reports", path: "/reports", roles: ["admin", "manager"], icon: "BarChart3" },
-  { name: "Users", path: "/users", roles: ["admin"], icon: "ShieldCheck" },
+  { name: "Staff", path: "/users", roles: ["admin"], icon: "ShieldCheck" },
   { name: "Settings", path: "/settings", roles: ["admin", "manager", "cashier"], icon: "Settings" },
+];
+
+export const subscriptionPlans = [
+  {
+    title: "Monthly Plan",
+    price: 150,
+    duration: "month",
+    features: [
+      "Full POS Access",
+      "Inventory Management",
+      "Sales Tracking",
+      "Basic Reports",
+      "Email Support",
+    ],
+  },
+  {
+    title: "Yearly Plan",
+    price: 1600,
+    duration: "year",
+    highlighted: true,
+    features: [
+      "Everything in Monthly",
+      "Advanced Analytics",
+      "Priority Support",
+      "Multi-User Access",
+      "Save 20% Annually",
+    ],
+  },
 ];
 
 export const features = [
@@ -245,3 +277,38 @@ export const demoScreenshots = [
     imagePath: adminDashboard
   }
 ];
+export const registerFeatures = [
+  "Full Inventory Management",
+  "Real-time Sales Analytics",
+  "Offline-ready Transaction Support",
+  "Role-based Staff & Permission Controls"
+];
+
+export const loginBenefits = [
+  { icon: ShieldCheck, text: "256-bit SSL Encryption" },
+  { icon: Globe, text: "Worldwide Access" }
+];
+
+export const trustBadges = [
+  { icon: ShieldCheck, text: "Secure Payments" },
+  { icon: Zap, text: "Instant Setup" },
+  { icon: ShieldCheck, text: "Stripe Secure Checkout" }
+];
+
+export const cardElementOptions = {
+  style: {
+    base: {
+      fontSize: "16px",
+      color: "#0f172a",
+      fontFamily: "'Inter', sans-serif",
+      fontSmoothing: "antialiased",
+      "::placeholder": { color: "#94a3b8" },
+      iconColor: "#2563eb",
+    },
+    invalid: {
+      color: "#ef4444",
+      iconColor: "#ef4444",
+    },
+  },
+  hidePostalCode: true,
+};

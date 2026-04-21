@@ -13,6 +13,7 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),
+        'modals': path.resolve(__dirname, './src/components/modals'),
       },
     },
     server: {

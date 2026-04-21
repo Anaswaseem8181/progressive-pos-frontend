@@ -8,7 +8,7 @@ export const useAuth = () => {
   return {
     user,
     isAuthenticated: !!user,
-    login: (email, role) => dispatch(login({ email, role })),
+    login: (email, role, businessName, currency) => dispatch(login({ email, role, businessName, currency })),
     logout: () => dispatch(logout()),
   };
 };

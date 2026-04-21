@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
-import { TwitterIcon } from '../../assets/icons/common/footer/TwitterIcon';
-import { GithubIcon } from '../../assets/icons/common/footer/GithubIcon';
+import { TwitterIcon } from '../../assets/icons/svg/TwitterIcon';
+import { GithubIcon } from '../../assets/icons/svg/GithubIcon';
+import { useAuth } from '../../hooks/useAuth';
 
 const Footer = () => {
+  const { user } = useAuth();
   return (
     <footer className="bg-white pt-16 pb-8 border-t border-slate-200">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -12,7 +14,9 @@ const Footer = () => {
               <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">P</span>
               </div>
-              <span className="font-bold text-xl tracking-tight text-slate-900">Progressive POS</span>
+              <span className="font-bold text-xl tracking-tight text-slate-900">
+                {user?.businessName || "Progressive POS"}
+              </span>
             </div>
             <p className="text-slate-500 max-w-sm mb-6 leading-relaxed">
               The smartest way to manage your inventory, process sales, and understand your business, beautifully packaged in an offline-capable web application.
@@ -51,7 +55,7 @@ const Footer = () => {
 
         <div className="pt-8 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-slate-500">
-            &copy; {new Date().getFullYear()} Progressive POS. All rights reserved.
+            &copy; {new Date().getFullYear()} {user?.businessName || "Progressive POS"}. All rights reserved.
           </p>
           <div className="flex gap-4">
             {/* Social dummy icons */}

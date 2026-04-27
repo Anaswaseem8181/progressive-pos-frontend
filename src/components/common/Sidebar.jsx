@@ -5,7 +5,7 @@ import { menuItems } from "../../data";
 import * as Icons from "lucide-react";
 import { mergeClasses } from "../../utils/mergeClasses";
 import { LogOut, ShoppingCart, Menu, X } from "lucide-react";
-import WarningModal from "modals/common/WarningModal";
+import WarningModal from "../modals/common/WarningModal";
 import { notify } from "../../utils/notifications";
 
 const Sidebar = ({ isOpen, setIsOpen }) => {

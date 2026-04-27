@@ -3,7 +3,7 @@ import { useCustomers } from "../../hooks/useCustomers";
 import { usePOS } from "../../hooks/usePOS";
 import { useCurrency } from "../../hooks/useCurrency";
 import { useAuth } from "../../hooks/useAuth";
-import OrderSuccessModal from "modals/OrderSuccess/OrderSuccessModal";
+import OrderSuccessModal from "../../components/modals/OrderSuccess/OrderSuccessModal";
 import POSProductGrid from "../../components/dashboard/pos/POSProductList";
 import POSCartSidebar from "../../components/dashboard/pos/POSCartSidebar";
 

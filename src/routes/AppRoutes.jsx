@@ -2,7 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { ProtectedRoute } from "./ProtectedRoute";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
-import PaymentPage from "../pages/subscription/PaymentPage";
+import PaymentPage from "../pages/landing/subscription/PaymentPage";
 import Dashboard from "../pages/dashboard/Dashboard";
 import Landing from "../pages/landing/Landing";
 import DemoPage from "../pages/landing/DemoPage";
@@ -13,7 +13,7 @@ import Reports from "../pages/dashboard/Reports";
 import Staff from "../pages/dashboard/Staff";
 import Settings from "../pages/dashboard/Settings";
 import MainLayout from "../components/layout/MainLayout";
-import Subscription from "../pages/subscription/Subscription";
+import SubscriptionPlan from "../pages/landing/subscription/SubscriptionPlan";
 
 export const AppRoutes = () => {
   return (
@@ -23,7 +23,7 @@ export const AppRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/payment" element={<PaymentPage />} />
-      <Route path="/subscription" element={<Subscription />} />
+      <Route path="/subscription" element={<SubscriptionPlan />} />
 
       <Route element={<MainLayout />}>
         <Route path="/dashboard" element={

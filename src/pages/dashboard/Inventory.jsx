@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { useProducts } from "../../hooks/useProducts";
 import { mergeClasses } from "../../utils/mergeClasses";
 import { useCurrency } from "../../hooks/useCurrency";
-import WarningModal from "modals/common/WarningModal";
+import WarningModal from "../../components/modals/common/WarningModal";
 import { notify } from "../../utils/notifications";
 
 const Inventory = () => {

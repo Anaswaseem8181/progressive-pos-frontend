@@ -2,12 +2,9 @@ import React from "react";
 import { motion } from "motion/react";
 import { trustBadges } from "../../data";
 
-/**
- * TrustBadges - Presentational component for the trust badges on onboarding pages.
- */
 const TrustBadges = ({ delay = 1 }) => {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay }}

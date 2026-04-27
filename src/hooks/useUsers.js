@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { mockDb } from "../utils/mockDb";
+import { notify } from "../utils/notifications";
 
 export const useUsers = (currentUser) => {
   const [staffList, setStaffList] = useState([]);
@@ -40,6 +41,7 @@ export const useUsers = (currentUser) => {
       setShowDeleteModal(false);
       setStaffToDelete(null);
       loadStaff();
+      notify.success("Staff member deleted successfully");
     }
   };
 
@@ -58,6 +60,7 @@ export const useUsers = (currentUser) => {
     mockDb.saveUser(newStaff);
     setIsModalOpen(false);
     loadStaff();
+    notify.success(editingStaff ? "Staff details updated" : "Staff member added successfully");
   };
 
   const closeModal = () => setIsModalOpen(false);

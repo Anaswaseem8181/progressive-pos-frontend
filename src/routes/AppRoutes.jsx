@@ -10,7 +10,7 @@ import POS from "../pages/dashboard/POS";
 import Inventory from "../pages/dashboard/Inventory";
 import Customers from "../pages/dashboard/Customers";
 import Reports from "../pages/dashboard/Reports";
-import Users from "../pages/dashboard/Users";
+import Staff from "../pages/dashboard/Staff";
 import Settings from "../pages/dashboard/Settings";
 import MainLayout from "../components/layout/MainLayout";
 import Subscription from "../pages/subscription/Subscription";
@@ -51,9 +51,9 @@ export const AppRoutes = () => {
             <Reports />
           </ProtectedRoute>
         } />
-        <Route path="/users" element={
+        <Route path="/staff" element={
           <ProtectedRoute roles={["admin"]}>
-            <Users />
+            <Staff />
           </ProtectedRoute>
         } />
         <Route path="/settings" element={

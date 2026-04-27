@@ -1,15 +1,15 @@
 import React from "react";
 import { Search, Plus } from "lucide-react";
 import { motion } from "motion/react";
-import { cn } from "../../../lib/utils";
-import { filterProducts } from "../../../utils/productUtils";
+import { mergeClasses } from "../../../utils/mergeClasses";
+import { filterProducts } from "../../../utils/filterProducts";
 
-const POSProductGrid = ({ 
-  products, 
-  search, 
-  onSearchChange, 
-  onAddToCart, 
-  formatCurrency 
+const POSProductGrid = ({
+  products,
+  search,
+  onSearchChange,
+  onAddToCart,
+  formatCurrency
 }) => {
   return (
     <div className="flex-1 flex flex-col gap-6">
@@ -46,7 +46,7 @@ const POSProductGrid = ({
             </div>
             <div className="mt-6 flex items-center justify-between">
               <span
-                className={cn(
+                className={mergeClasses(
                   "text-xs font-medium",
                   product.stock < 10 ? "text-orange-600" : "text-gray-400",
                 )}

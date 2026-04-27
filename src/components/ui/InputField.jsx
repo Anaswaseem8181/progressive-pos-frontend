@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
-import { cn } from "../../lib/utils";
+import { mergeClasses } from "../../utils/mergeClasses";
 
 export const InputField = ({
   label,
@@ -26,7 +26,7 @@ export const InputField = ({
     : { value, onChange, name };
 
   return (
-    <div className={cn("mb-4 group", className)}>
+    <div className={mergeClasses("mb-4 group", className)}>
       {label && (
         <label className="block text-xs font-black text-slate-400 uppercase tracking-widest mb-3 transition-colors group-focus-within:text-blue-600">
           {label}
@@ -45,7 +45,7 @@ export const InputField = ({
           placeholder={placeholder}
           disabled={disabled}
           {...inputProps}
-          className={cn(
+          className={mergeClasses(
             "block w-full py-4 bg-white border-2 border-slate-200 rounded-3xl text-sm font-semibold placeholder-slate-300 focus:outline-none focus:border-blue-600 transition-all shadow-sm",
             Icon ? "pl-12" : "pl-6",
             isPassword ? "pr-12" : "pr-4",

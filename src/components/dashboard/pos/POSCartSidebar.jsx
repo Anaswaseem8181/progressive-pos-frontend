@@ -1,6 +1,5 @@
 import React from "react";
 import { ShoppingCart, Minus, Plus, Trash2, ChevronDown } from "lucide-react";
-import { formatCurrency } from "../../../hooks/useCurrency";
 
 const POSCartSidebar = ({
   cart,

@@ -5,9 +5,6 @@ import { motion } from "motion/react";
 import { CheckCircle2, CreditCard, Lock, Loader2 } from "lucide-react";
 import { cardElementOptions } from "../../data";
 
-/**
- * CheckoutForm - Computational & Presentational component for the Stripe payment form.
- */
 const CheckoutForm = ({ plan, initialData }) => {
   const stripe = useStripe();
   const elements = useElements();

@@ -1,5 +1,5 @@
 import { Edit2, Trash2 } from "lucide-react";
-import { cn } from "../../../lib/mergeClasses";
+import { mergeClasses } from "../../../utils/mergeClasses";
 
 const UsersTable = ({ users, onEdit, onDelete }) => {
   return (
@@ -31,7 +31,7 @@ const UsersTable = ({ users, onEdit, onDelete }) => {
                     <span className="text-sm text-gray-500">{user.email}</span>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className={cn(
+                    <span className={mergeClasses(
                       "px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider uppercase",
                       user.role?.toLowerCase() === "admin" ? "bg-blue-50 text-blue-600" :
                         user.role?.toLowerCase() === "manager" ? "bg-purple-50 text-purple-600" : "bg-green-100 text-green-600"

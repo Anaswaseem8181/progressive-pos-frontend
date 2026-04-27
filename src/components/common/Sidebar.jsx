@@ -3,13 +3,19 @@ import { NavLink } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { menuItems } from "../../data";
 import * as Icons from "lucide-react";
-import { cn } from "../../lib/utils";
+import { mergeClasses } from "../../utils/mergeClasses";
 import { LogOut, ShoppingCart, Menu, X } from "lucide-react";
 import WarningModal from "modals/common/WarningModal";
+import { notify } from "../../utils/notifications";
 
 const Sidebar = ({ isOpen, setIsOpen }) => {
   const { user, logout } = useAuth();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+
+  const handleConfirmLogout = () => {
+    logout();
+    notify.success("Logged out successfully");
+  };
 
   const filteredMenuItems = React.useMemo(() => {
     if (!user?.role) return [];
@@ -19,7 +25,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
   return (
     <>
       <aside
-        className={cn(
+        className={mergeClasses(
           "fixed top-0 left-0 h-full w-64 bg-white border-r border-gray-200 flex flex-col transition-transform duration-300 z-40",
           isOpen ? "translate-x-0" : "-translate-x-full",
           "md:translate-x-0 md:relative md:z-auto"
@@ -34,7 +40,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
               {user?.businessName || "Progressive POS"}
             </h1>
           </div>
-          <button 
+          <button
             onClick={() => setIsOpen(false)}
             className="md:hidden p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100 transition-colors"
           >
@@ -50,7 +56,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
                 key={item.path}
                 to={item.path}
                 className={({ isActive }) =>
-                  cn(
+                  mergeClasses(
                     "flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200",
                     isActive
                       ? "bg-emerald-500 text-white shadow-md shadow-emerald-100"
@@ -88,7 +94,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
       <WarningModal
         isOpen={showLogoutModal}
         onClose={() => setShowLogoutModal(false)}
-        onConfirm={logout}
+        onConfirm={handleConfirmLogout}
         title="Confirm Logout"
         message="Are you sure you want to end your session? You will need to login again to access your dashboard."
         confirmText="Logout"

@@ -3,8 +3,8 @@ import { useCustomers } from "../../hooks/useCustomers";
 import { usePOS } from "../../hooks/usePOS";
 import { useCurrency } from "../../hooks/useCurrency";
 import { useAuth } from "../../hooks/useAuth";
-import OrderSuccessModal from "modals/OrderSuccess/OrderSuccessModal";
-import POSProductGrid from "../../components/dashboard/pos/POSProductGrid";
+import OrderSuccessModal from "../../components/modals/OrderSuccess/OrderSuccessModal";
+import POSProductGrid from "../../components/dashboard/pos/POSProductList";
 import POSCartSidebar from "../../components/dashboard/pos/POSCartSidebar";
 
 const POS = () => {
@@ -12,21 +12,21 @@ const POS = () => {
   const { products: initialProducts } = useProducts();
   const { customers } = useCustomers();
   const { formatCurrency } = useCurrency();
-  
-  const { 
-    cart, 
-    search, 
-    setSearch, 
-    selectedCustomerId, 
+
+  const {
+    cart,
+    search,
+    setSearch,
+    selectedCustomerId,
     setSelectedCustomerId,
     showSuccessModal,
     setShowSuccessModal,
     lastSale,
-    addToCart, 
-    removeFromCart, 
-    updateQuantity, 
-    handleCompleteOrder, 
-    subtotal 
+    addToCart,
+    removeFromCart,
+    updateQuantity,
+    handleCompleteOrder,
+    subtotal
   } = usePOS(customers, user);
 
   return (

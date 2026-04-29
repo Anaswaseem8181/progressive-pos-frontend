@@ -1,7 +1,7 @@
 import { useProducts } from "../../hooks/useProducts";
 import { useCustomers } from "../../hooks/useCustomers";
 import { useSales } from "../../hooks/useSales";
-import { getDashboardStats } from "../../utils/dashboardUtils";
+import { getDashboardStats } from "../../utils/getDashboardStats";
 import { useCurrency } from "../../hooks/useCurrency";
 
 const StatsCards = () => {

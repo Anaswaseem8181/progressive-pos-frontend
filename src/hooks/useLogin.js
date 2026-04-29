@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../redux/silces/authSlice";
+import { notify } from "../utils/notifications";
 
 export const useLogin = () => {
   const [email, setEmail] = useState("");
@@ -9,15 +10,15 @@ export const useLogin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (email && password) {
-      const isSuccess = dispatch(loginUser(email, password));
+      const isSuccess = await dispatch(loginUser(email, password));
 
       if (isSuccess) {
         navigate("/dashboard");
       } else {
-        alert("Invalid email or password");
+        notify.error("Invalid Credentials");
       }
     }
   };

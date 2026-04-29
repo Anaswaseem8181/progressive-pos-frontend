@@ -1,10 +1,7 @@
 import { useState } from "react";
-import { calculateCartSubtotal } from "../utils/cartUtils";
+import { calculateCartSubtotal } from "../utils/calculateCart";
 import { mockDb } from "../utils/mockDb";
-
-import { useState } from "react";
-import { calculateCartSubtotal } from "../utils/cartUtils";
-import { mockDb } from "../utils/mockDb";
+import { notify } from "../utils/notifications";
 
 export const usePOS = (initialCustomers = [], currentUser = null) => {
   const [cart, setCart] = useState([]);
@@ -26,6 +23,7 @@ export const usePOS = (initialCustomers = [], currentUser = null) => {
     } else {
       setCart([...cart, { ...product, quantity: 1 }]);
     }
+    notify.info(`${product.name} added to cart`, { autoClose: 1000 });
   };
 
   const updateQuantity = (id, delta) => {
@@ -66,6 +64,7 @@ export const usePOS = (initialCustomers = [], currentUser = null) => {
     setLastSale(result);
     setShowSuccessModal(true);
     clearCart();
+    notify.success("Order processed successfully");
     return result;
   };
 

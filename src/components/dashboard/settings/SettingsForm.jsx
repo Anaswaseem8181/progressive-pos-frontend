@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../../hooks/useAuth';
 import { useCurrency } from '../../../hooks/useCurrency';
+import { notify } from '../../../utils/notifications';
 
 const SettingsForm = () => {
   const { user } = useAuth();
@@ -22,7 +23,7 @@ const SettingsForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    alert('Settings saved successfully!');
+    notify.success('Settings saved successfully!');
   };
 
   return (

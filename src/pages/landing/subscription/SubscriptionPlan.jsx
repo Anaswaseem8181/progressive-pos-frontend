@@ -3,13 +3,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowLeft } from "lucide-react";
 
-import { PlanCard } from "../../components/subscription/PlanCard";
-import { subscriptionPlans } from "../../data/index.js";
-import { useAuth } from "../../hooks/useAuth";
-import WarningModal from "modals/common/WarningModal";
-import BackgroundDecoration from "../../components/common/BackgroundDecoration";
-import SubscriptionHeader from "../../components/subscription/SubscriptionHeader";
-import TrustBadges from "../../components/subscription/TrustBadges";
+import { PlanCard } from "../../../components/subscription/PlanCard.jsx";
+import { subscriptionPlans } from "../../../data/index.js";
+import { useAuth } from "../../../hooks/useAuth.js";
+import WarningModal from "../../../components/modals/common/WarningModal";
+import BackgroundDecoration from "../../../components/common/BackgroundDecoration.jsx";
+import SubscriptionHeader from "../../../components/subscription/SubscriptionHeader.jsx";
+import TrustBadges from "../../../components/subscription/TrustBadges.jsx";
 
 const Subscription = () => {
   const navigate = useNavigate();

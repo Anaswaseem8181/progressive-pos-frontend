@@ -69,7 +69,7 @@ export const menuItems = [
   { name: "Inventory", path: "/inventory", roles: ["admin"], icon: "Package" },
   { name: "Customers", path: "/customers", roles: ["admin", "manager", "cashier"], icon: "Users" },
   { name: "Reports", path: "/reports", roles: ["admin", "manager"], icon: "BarChart3" },
-  { name: "Staff", path: "/users", roles: ["admin"], icon: "ShieldCheck" },
+  { name: "Staff", path: "/staff", roles: ["admin"], icon: "ShieldCheck" },
   { name: "Settings", path: "/settings", roles: ["admin", "manager", "cashier"], icon: "Settings" },
 ];
 

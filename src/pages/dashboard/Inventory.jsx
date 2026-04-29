@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Plus, Edit2, Trash2, Search } from "lucide-react";
 import { motion } from "motion/react";
 import { useProducts } from "../../hooks/useProducts";
-import { cn } from "../../lib/utils";
+import { mergeClasses } from "../../utils/mergeClasses";
 import { useCurrency } from "../../hooks/useCurrency";
-import WarningModal from "modals/common/WarningModal";
+import WarningModal from "../../components/modals/common/WarningModal";
+import { notify } from "../../utils/notifications";
 
 const Inventory = () => {
   const { products } = useProducts();
@@ -21,6 +22,7 @@ const Inventory = () => {
     console.log("Deleting product:", productToDelete?.name);
     setShowDeleteModal(false);
     setProductToDelete(null);
+    notify.success("Product removed from inventory");
   };
 
   return (
@@ -77,12 +79,12 @@ const Inventory = () => {
                     <span className="text-sm font-bold text-gray-900">{formatCurrency(product.price)}</span>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className={cn("text-sm font-bold", product.stock < 10 ? "text-orange-600" : "text-gray-900")}>
+                    <span className={mergeClasses("text-sm font-bold", product.stock < 10 ? "text-orange-600" : "text-gray-900")}>
                       {product.stock}
                     </span>
                   </td>
                   <td className="px-6 py-4 text-center">
-                    <span className={cn(
+                    <span className={mergeClasses(
                       "px-2.5 py-1 rounded-full text-[10px] font-bold tracking-wider",
                       product.status === "IN STOCK" ? "bg-emerald-50 text-emerald-600" : "bg-orange-50 text-orange-600"
                     )}>

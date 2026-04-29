@@ -5,7 +5,7 @@ import { ArrowLeft, Building2, User, Mail, Lock, Phone, Globe, Loader2 } from "l
 import { InputField } from "../ui/InputField";
 import { SelectField } from "../ui/SelectField";
 import AuthHeader from "../common/AuthHeader";
-import WarningModal from "modals/common/WarningModal";
+import WarningModal from "../modals/common/WarningModal";
 
 /**
  * RegisterForm - Presentational component for the right panel of the registration page.

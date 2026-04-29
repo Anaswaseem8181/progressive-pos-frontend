@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { cn } from "../../lib/utils";
+import { mergeClasses } from "../../utils/mergeClasses";
 
 const AuthSplitLayout = ({
   leftContent,
@@ -9,9 +9,9 @@ const AuthSplitLayout = ({
   className
 }) => {
   return (
-    <div className={cn("min-h-screen bg-white flex flex-col lg:flex-row overflow-hidden font-sans", className)}>
+    <div className={mergeClasses("min-h-screen bg-white flex flex-col lg:flex-row overflow-hidden font-sans", className)}>
       <div
-        className={cn(
+        className={mergeClasses(
           "hidden lg:flex p-12 flex-col justify-between relative overflow-hidden",
           leftWidth,
           leftBg

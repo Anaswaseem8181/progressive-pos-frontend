@@ -1,4 +1,4 @@
-import { formatPrice } from "../utils/currencyUtils";
+import { formatPrice } from "../utils/formatPrice";
 
 export const useCurrency = () => {
   const currency = import.meta.env.VITE_POS_CURRENCY || "PKR";

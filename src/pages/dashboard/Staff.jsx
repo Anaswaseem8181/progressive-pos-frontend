@@ -1,11 +1,10 @@
-import React from "react";
 import { motion } from "motion/react";
 import { useAuth } from "../../hooks/useAuth";
 import { useUsers } from "../../hooks/useUsers";
-import UsersTable from "../../components/dashboard/users/UsersTable";
-import UsersHeader from "../../components/dashboard/users/UsersHeader";
-import { StaffModal } from "modals/staff/StaffModal";
-import WarningModal from "modals/common/WarningModal";
+import UsersTable from "../../components/dashboard/staff/staffTable";
+import UsersHeader from "../../components/dashboard/staff/staffHeader";
+import { StaffModal } from "../../components/modals/staff/StaffModal";
+import WarningModal from "../../components/modals/common/WarningModal";
 
 const Users = () => {
   const { user: currentUser } = useAuth();

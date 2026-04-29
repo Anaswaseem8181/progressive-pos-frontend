@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { registerSchema } from "../utils/registerSchema";
+import { registerValidation } from "../utils/registerValidation";
 import { registerUser } from "../redux/silces/authSlice";
 import { useAuth } from "../hooks/useAuth";
+import { notify } from "../utils/notifications";
 
 export const useRegister = () => {
     const navigate = useNavigate();
@@ -25,7 +26,7 @@ export const useRegister = () => {
         handleSubmit,
         formState: { errors },
     } = useForm({
-        resolver: yupResolver(registerSchema),
+        resolver: yupResolver(registerValidation),
     });
 
     const onSubmit = async (data) => {
@@ -34,6 +35,7 @@ export const useRegister = () => {
         await new Promise(resolve => setTimeout(resolve, 1500));
 
         dispatch(registerUser(data));
+        notify.success("Account created! Let's set up your subscription.");
         navigate("/subscription", { state: { registrationData: data } });
     };
 

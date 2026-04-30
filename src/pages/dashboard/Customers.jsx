@@ -1,9 +1,20 @@
+import { useState } from "react";
 import { Plus, Search, Mail, Phone, Edit2, BarChart2 } from "lucide-react";
 import { motion } from "motion/react";
 import { useCustomers } from "../../hooks/useCustomers";
+import { CustomerModal } from "../../components/modals/customers/CustomerModal";
+import { notify } from "../../utils/notifications";
 
 const Customers = () => {
-  const { customers } = useCustomers();
+  const { customers, addCustomer } = useCustomers();
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
+  const handleSaveCustomer = (data) => {
+    if (addCustomer(data)) {
+      notify.success("Customer added successfully");
+      setIsAddModalOpen(false);
+    }
+  };
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -19,7 +30,10 @@ const Customers = () => {
             Track your regular customers and their details.
           </p>
         </div>
-        <button className="bg-emerald-500 text-white px-5 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 hover:bg-emerald-600 transition-all shadow-lg shadow-emerald-100 active:scale-[0.98]">
+        <button 
+          onClick={() => setIsAddModalOpen(true)}
+          className="bg-emerald-500 text-white px-5 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 hover:bg-emerald-600 transition-all shadow-lg shadow-emerald-100 active:scale-[0.98]"
+        >
           <Plus size={18} />
           New Customer
         </button>
@@ -77,6 +91,12 @@ const Customers = () => {
           </div>
         ))}
       </div>
+
+      <CustomerModal 
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
+        onSave={handleSaveCustomer}
+      />
     </motion.div>
   );
 };

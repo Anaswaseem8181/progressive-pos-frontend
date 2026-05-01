@@ -10,8 +10,8 @@ export const getDashboardStats = (products, customers, sales, currency = "PKR") 
       label: "Total Revenue",
       value: formatPrice(totalRevenue, currency),
       icon: DollarSign,
-      color: "text-emerald-600",
-      bg: "bg-emerald-50",
+      color: "text-blue-600",
+      bg: "bg-blue-50",
       link: "View all sales",
     },
     {

@@ -11,7 +11,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      const { email, role, businessName, currency, name, storeAddress, contactNumber } = action.payload;
+      const { email, role, businessName, businessCategory, currency, name, storeAddress, contactNumber } = action.payload;
 
       const user = {
         id: action.payload.id || Math.random().toString(36).substr(2, 9),
@@ -19,6 +19,7 @@ const authSlice = createSlice({
         email,
         role,
         businessName: businessName || "Progressive POS",
+        businessCategory: businessCategory || "Clothing & Apparel",
         currency: currency || "PKR",
         storeAddress: storeAddress || "123 Tech Avenue, Silicon Valley",
         contactNumber: contactNumber || "+1 (555) 000-1234"

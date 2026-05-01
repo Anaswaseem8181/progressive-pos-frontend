@@ -1,4 +1,9 @@
-import { DollarSign, Package, AlertTriangle, Users, CloudUpload, PackageSearch, Smartphone, WifiOff, TrendingUp, ShieldCheck, Zap, ShoppingCart, LineChart, FileDown, Star, Globe } from "lucide-react";
+import { DollarSign, Package, AlertTriangle, Users, CloudUpload, PackageSearch, Smartphone, WifiOff, TrendingUp, ShieldCheck, Zap, ShoppingCart, LineChart, FileDown, Star, Globe, Sun, Moon, Monitor } from "lucide-react";
+export const defaultCurrency = "PKR";
+export const saasCurrency = "USD";
+export const businessCategory = [
+  "Clothing & Apparel"
+];
 import adminDashboard from "../assets/images/demoPageImages/AdminDashboard.png";
 import managerDashboard from "../assets/images/demoPageImages/ManagerDashboard.png";
 import cashierDashboard from "../assets/images/demoPageImages/CashierDashboard.png";
@@ -19,9 +24,21 @@ export const products = [
 ];
 
 export const customers = [
-  { id: 1, name: "Walk-in Customer", phone: "000", email: "walkin@example.com", status: "REGULAR" },
-  { id: 2, name: "Anas", phone: "0309789", email: "anas@gmail.com", status: "REGULAR" },
-  { id: 3, name: "Sarah Khan", phone: "03129", email: "sarah@example.com", status: "VIP" },
+  { id: 1, name: "Walk-in Customer", phone: "0300000000", status: "REGULAR" },
+  { id: 2, name: "Anas", phone: "0309789900", status: "REGULAR" },
+  { id: 3, name: "Sarah Khan", phone: "0312987654", status: "VIP" },
+  { id: 4, name: "Ali", phone: "0300123456", status: "VIP" },
+  { id: 5, name: "Fatima", phone: "0312345678", status: "REGULAR" },
+  { id: 6, name: "Hassan", phone: "0309876543", status: "VIP" },
+  { id: 7, name: "Aisha", phone: "0312987654", status: "REGULAR" },
+  { id: 8, name: "Usman", phone: "0309876543", status: "VIP" },
+  { id: 9, name: "Noor", phone: "0312987654", status: "REGULAR" },
+  { id: 10, name: "Ahmed", phone: "0309876543", status: "VIP" },
+  { id: 11, name: "Zainab", phone: "0312987654", status: "REGULAR" },
+  { id: 12, name: "Bilal", phone: "0309876543", status: "VIP" },
+  { id: 13, name: "Sara", phone: "0312987654", status: "REGULAR" },
+  { id: 14, name: "Hamza", phone: "0309876543", status: "VIP" },
+  { id: 15, name: "Hira", phone: "0312987654", status: "REGULAR" },
 ];
 
 export const sales = [
@@ -51,7 +68,7 @@ export const sales = [
   },
 ];
 
-export const users = [
+export const staff = [
   { id: 1, username: "admin", role: "ADMIN", email: "admin@example.com" },
   { id: 2, username: "manager", role: "MANAGER", email: "manager@example.com" },
   { id: 3, username: "cashier", role: "CASHIER", email: "cashier@example.com" },
@@ -312,3 +329,8 @@ export const cardElementOptions = {
   },
   hidePostalCode: true,
 };
+export const themes = [
+  { id: "light", label: "Light", icon: Sun, description: "Clean and bright interface" },
+  { id: "dark", label: "Dark", icon: Moon, description: "Easy on the eyes at night" },
+  { id: "system", label: "System Default", icon: Monitor, description: "Follows your device setting" },
+];

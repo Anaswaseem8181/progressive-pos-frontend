@@ -14,14 +14,28 @@ export const useCustomers = () => {
       const newCustomer = {
         ...customerData,
         id: Date.now().toString(36) + Math.random().toString(36).substr(2, 5),
-        status: "REGULAR", // Default status for new customers
+        status: "REGULAR",
       };
 
       setCustomers((prevCustomers) => [newCustomer, ...prevCustomers]);
       return true;
     } catch (error) {
-      console.error("Failed to add customer:", error);
       notify.error("Failed to add customer");
+      return false;
+    }
+  };
+
+  const updateCustomer = (id, updatedData) => {
+    try {
+      setCustomers((prevCustomers) =>
+        prevCustomers.map((customer) =>
+          customer.id === id ? { ...customer, ...updatedData } : customer
+        )
+      );
+      return true;
+    } catch (error) {
+      console.error("Failed to update customer:", error);
+      notify.error("Failed to update customer");
       return false;
     }
   };
@@ -30,5 +44,6 @@ export const useCustomers = () => {
     customers,
     getCustomerById,
     addCustomer,
+    updateCustomer,
   };
 };

@@ -1,5 +1,5 @@
-import React from "react";
 import { ShoppingCart, Minus, Plus, Trash2, ChevronDown } from "lucide-react";
+import { useTaxDiscount } from "../../../components/dashboard/settings/TaxDiscountSection";
 
 const POSCartSidebar = ({
   cart,
@@ -12,6 +12,11 @@ const POSCartSidebar = ({
   subtotal,
   formatCurrency
 }) => {
+  const { taxRate, discountRate } = useTaxDiscount();
+  const discountAmount = subtotal * (discountRate / 100);
+  const taxableAmount = subtotal - discountAmount;
+  const taxAmount = taxableAmount * (taxRate / 100);
+  const total = taxableAmount + taxAmount;
   return (
     <div className="w-full lg:w-[400px] bg-white rounded-2xl border border-gray-100 shadow-lg flex flex-col overflow-hidden shrink-0">
       <div className="p-6 border-b border-gray-100">
@@ -104,15 +109,23 @@ const POSCartSidebar = ({
             <span>Subtotal</span>
             <span className="font-bold">{formatCurrency(subtotal)}</span>
           </div>
-          <div className="flex justify-between text-sm text-gray-500">
-            <span>Discount (%)</span>
-            <span className="font-bold">0 %</span>
-          </div>
+          {discountRate > 0 && (
+            <div className="flex justify-between text-sm text-red-500">
+              <span>Discount ({discountRate}%)</span>
+              <span className="font-bold">- {formatCurrency(discountAmount)}</span>
+            </div>
+          )}
+          {taxRate > 0 && (
+            <div className="flex justify-between text-sm text-blue-500">
+              <span>Tax ({taxRate}%)</span>
+              <span className="font-bold">+ {formatCurrency(taxAmount)}</span>
+            </div>
+          )}
         </div>
         <div className="pt-4 border-t border-gray-200 flex items-center justify-between">
           <span className="text-lg font-bold text-gray-900">Total</span>
           <span className="text-3xl font-bold text-emerald-600">
-            {formatCurrency(subtotal)}
+            {formatCurrency(total)}
           </span>
         </div>
         <button

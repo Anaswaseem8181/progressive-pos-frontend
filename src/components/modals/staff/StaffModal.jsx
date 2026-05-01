@@ -3,14 +3,6 @@ import { useForm } from "react-hook-form";
 import { X, User, Mail, Lock } from "lucide-react";
 import { InputField } from "../../ui/InputField";
 
-/**
- * StaffModal component for adding or editing staff members.
- * @param {Object} props
- * @param {boolean} props.isOpen 
- * @param {Function} props.onClose
- * @param {Function} props.onSave
- * @param {Object} [props.staff]
- */
 export const StaffModal = ({ isOpen, onClose, onSave, staff }) => {
   const {
     register,

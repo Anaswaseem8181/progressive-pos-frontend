@@ -1,12 +1,12 @@
 import { motion } from "motion/react";
 import { useAuth } from "../../hooks/useAuth";
-import { useUsers } from "../../hooks/useUsers";
-import UsersTable from "../../components/dashboard/staff/staffTable";
-import UsersHeader from "../../components/dashboard/staff/staffHeader";
+import { useStaff } from "../../hooks/useStaff";
+import StaffTable from "../../components/dashboard/staff/staffTable";
+import StaffHeader from "../../components/dashboard/staff/staffHeader";
 import { StaffModal } from "../../components/modals/staff/StaffModal";
 import WarningModal from "../../components/modals/common/WarningModal";
 
-const Users = () => {
+const Staff = () => {
   const { user: currentUser } = useAuth();
 
   const {
@@ -21,7 +21,7 @@ const Users = () => {
     handleSaveStaff,
     closeModal,
     closeDeleteModal
-  } = useUsers(currentUser);
+  } = useStaff(currentUser);
 
   return (
     <motion.div
@@ -29,12 +29,12 @@ const Users = () => {
       animate={{ opacity: 1, y: 0 }}
       className="space-y-6"
     >
-      <UsersHeader
+      <StaffHeader
         businessName={currentUser?.businessName}
         onAddStaff={handleAddStaff}
       />
 
-      <UsersTable
+      <StaffTable
         users={staffList}
         onEdit={handleEditStaff}
         onDelete={handleDeleteStaff}
@@ -60,4 +60,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default Staff;

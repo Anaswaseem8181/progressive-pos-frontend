@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { mockDb } from "../utils/mockDb";
 import { notify } from "../utils/notifications";
 
-export const useUsers = (currentUser) => {
+export const useStaff = (currentUser) => {
   const [staffList, setStaffList] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingStaff, setEditingStaff] = useState(null);

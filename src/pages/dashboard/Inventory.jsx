@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import { Plus, Edit2, Trash2, Search, MoreVertical } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Plus, Edit2, Trash2, Search } from "lucide-react";
 import { motion } from "motion/react";
 import { useProducts } from "../../hooks/useProducts";
 import { mergeClasses } from "../../utils/mergeClasses";
 import { useCurrency } from "../../hooks/useCurrency";
 import WarningModal from "../../components/modals/common/WarningModal";
 import { ProductModal } from "../../components/modals/inventory/ProductModal";
+import { ActionDropdown } from "../../components/ui/ActionDropdown";
 import { notify } from "../../utils/notifications";
 
 const Inventory = () => {
@@ -18,7 +19,6 @@ const Inventory = () => {
   const [openDropdownId, setOpenDropdownId] = useState(null);
 
   const handleSaveProduct = (data) => {
-    // Parse numeric fields
     const newProductData = {
       ...data,
       price: parseFloat(data.price),
@@ -63,8 +63,7 @@ const Inventory = () => {
     }
   };
 
-  // Close dropdown when clicking outside
-  React.useEffect(() => {
+  useEffect(() => {
     const handleClickOutside = () => setOpenDropdownId(null);
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
@@ -81,7 +80,7 @@ const Inventory = () => {
           <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Inventory Management</h1>
           <p className="text-gray-500 text-sm">Manage your products and stock levels.</p>
         </div>
-        <button 
+        <button
           onClick={() => setIsAddModalOpen(true)}
           className="bg-emerald-500 text-white px-5 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 hover:bg-emerald-600 transition-all shadow-lg shadow-emerald-100 active:scale-[0.98]"
         >
@@ -93,7 +92,7 @@ const Inventory = () => {
       <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
         <div className="p-4 border-b border-gray-50 flex items-center gap-4">
           <div className="relative flex-1 max-w-md">
-            <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+            <Search size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
             <input
               type="text"
               placeholder="Search products..."
@@ -102,7 +101,61 @@ const Inventory = () => {
           </div>
         </div>
 
-        <div className="overflow-x-auto">
+        {/* Mobile View: Card Layout */}
+        <div className="md:hidden divide-y divide-gray-100">
+          {products.map((product) => (
+            <div key={product.id} className="p-4 flex flex-col gap-3 relative">
+              <div className="flex justify-between items-start">
+                <div>
+                  <h3 className="font-bold text-gray-900">{product.name}</h3>
+                  <p className="text-xs text-gray-500 font-medium mt-0.5">{product.category} • {product.size || "N/A"}</p>
+                </div>
+                <div className="flex flex-col items-end gap-1">
+                  <span className="font-bold text-emerald-600">{formatCurrency(product.price)}</span>
+                  <span className={mergeClasses(
+                    "px-2 py-0.5 rounded-md text-[10px] font-bold tracking-wider",
+                    product.status === "IN STOCK" ? "bg-emerald-50 text-emerald-600" : "bg-orange-50 text-orange-600"
+                  )}>
+                    {product.status}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between mt-2 pt-3 border-t border-gray-50">
+                <div className="text-sm">
+                  <span className="text-gray-400 mr-1">Stock:</span>
+                  <span className={mergeClasses("font-bold", product.stock < 10 ? "text-orange-600" : "text-gray-900")}>
+                    {product.stock}
+                  </span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <ActionDropdown
+                    isOpen={openDropdownId === product.id}
+                    onToggle={() => setOpenDropdownId(openDropdownId === product.id ? null : product.id)}
+                    containerClassName=""
+                    actions={[
+                      {
+                        label: "Edit",
+                        icon: Edit2,
+                        onClick: () => handleEditClick(product),
+                        variant: "default",
+                      },
+                      {
+                        label: "Delete",
+                        icon: Trash2,
+                        onClick: () => handleDeleteClick(product),
+                        variant: "danger",
+                      },
+                    ]}
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop View: Table Layout */}
+        <div className="hidden md:block overflow-x-auto min-h-[300px]">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-gray-50/50 border-b border-gray-100">
@@ -144,37 +197,25 @@ const Inventory = () => {
                     </span>
                   </td>
                   <td className="px-6 py-4 text-right">
-                    <div className="relative inline-block text-left" onClick={(e) => e.stopPropagation()}>
-                      <button
-                        onClick={() => setOpenDropdownId(openDropdownId === product.id ? null : product.id)}
-                        className="p-2 text-gray-400 hover:text-emerald-500 hover:bg-emerald-50 rounded-lg transition-colors"
-                      >
-                        <MoreVertical size={18} />
-                      </button>
-
-                      {openDropdownId === product.id && (
-                        <div className="absolute right-0 mt-2 w-48 rounded-xl shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-10 overflow-hidden transform origin-top-right transition-all">
-                          <div className="py-1" role="menu" aria-orientation="vertical">
-                            <button
-                              onClick={() => handleEditClick(product)}
-                              className="w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-emerald-600 flex items-center gap-3 font-medium transition-colors"
-                              role="menuitem"
-                            >
-                              <Edit2 size={16} />
-                              Edit Product
-                            </button>
-                            <button
-                              onClick={() => handleDeleteClick(product)}
-                              className="w-full text-left px-4 py-3 text-sm text-red-600 hover:bg-red-50 flex items-center gap-3 font-medium transition-colors"
-                              role="menuitem"
-                            >
-                              <Trash2 size={16} />
-                              Delete Product
-                            </button>
-                          </div>
-                        </div>
-                      )}
-                    </div>
+                    <ActionDropdown
+                      isOpen={openDropdownId === product.id}
+                      onToggle={() => setOpenDropdownId(openDropdownId === product.id ? null : product.id)}
+                      containerClassName="relative inline-block text-left"
+                      actions={[
+                        {
+                          label: "Edit",
+                          icon: Edit2,
+                          onClick: () => handleEditClick(product),
+                          variant: "default",
+                        },
+                        {
+                          label: "Delete",
+                          icon: Trash2,
+                          onClick: () => handleDeleteClick(product),
+                          variant: "danger",
+                        },
+                      ]}
+                    />
                   </td>
                 </tr>
               ))}
@@ -193,7 +234,7 @@ const Inventory = () => {
         variant="danger"
       />
 
-      <ProductModal 
+      <ProductModal
         isOpen={isAddModalOpen}
         onClose={closeModal}
         onSave={handleSaveProduct}

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { X, User, Phone, Mail } from "lucide-react";
+import { X, User, Phone } from "lucide-react";
 import { InputField } from "../../ui/InputField";
 
 export const CustomerModal = ({ isOpen, onClose, onSave, customer }) => {
@@ -18,7 +18,6 @@ export const CustomerModal = ({ isOpen, onClose, onSave, customer }) => {
       reset({
         name: "",
         phone: "",
-        email: "",
       });
     }
   }, [customer, reset, isOpen]);
@@ -59,16 +58,6 @@ export const CustomerModal = ({ isOpen, onClose, onSave, customer }) => {
             icon={<Phone size={18} />}
             placeholder="e.g. 03001234567"
             required
-          />
-
-          <InputField
-            label="Email Address (Optional)"
-            name="email"
-            type="email"
-            register={register}
-            errors={errors}
-            icon={<Mail size={18} />}
-            placeholder="e.g. john@example.com"
           />
 
           <div className="pt-4 flex gap-3">

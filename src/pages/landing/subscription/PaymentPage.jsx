@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { saasCurrency } from "../../../data";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { Lock } from "lucide-react";
@@ -19,7 +20,7 @@ const PaymentPage = () => {
   const navigate = useNavigate();
   const plan = location.state?.plan;
   const registrationData = location.state?.registrationData;
-  const saasCurrency = import.meta.env.VITE_SAAS_CURRENCY || "USD";
+
   const { isAuthenticated } = useAuth();
   const [showCancelModal, setShowCancelModal] = useState(false);
 

@@ -3,7 +3,6 @@ import { sales as initialSales } from "../data";
 const USERS_KEY = "pos_all_users";
 const SALES_KEY = "pos_all_sales";
 
-// Initialize with demo data if empty
 const initializeDb = () => {
   const existingUsers = localStorage.getItem(USERS_KEY);
   if (!existingUsers) {
@@ -15,7 +14,8 @@ const initializeDb = () => {
         businessName: "Progressive POS",
         role: "admin",
         adminEmail: "admin@gmail.com",
-        currency: "PKR"
+        currency: "PKR",
+        businessCategory: "Clothing & Apparel"
       },
       {
         email: "manager@gmail.com",
@@ -23,7 +23,8 @@ const initializeDb = () => {
         name: "Demo Manager",
         businessName: "Progressive POS",
         role: "manager",
-        adminEmail: "admin@gmail.com"
+        adminEmail: "admin@gmail.com",
+        businessCategory: "Clothing & Apparel"
       },
       {
         email: "cashier@gmail.com",
@@ -31,7 +32,8 @@ const initializeDb = () => {
         name: "Demo Cashier",
         businessName: "Progressive POS",
         role: "cashier",
-        adminEmail: "admin@gmail.com"
+        adminEmail: "admin@gmail.com",
+        businessCategory: "Clothing & Apparel"
       }
     ];
     localStorage.setItem(USERS_KEY, JSON.stringify(defaultUsers));
@@ -91,7 +93,7 @@ export const mockDb = {
       id: sales.length > 0 ? Math.max(...sales.map(s => s.id)) + 1 : 1,
       date: new Date().toLocaleString()
     };
-    sales.unshift(newSale); // Newest first
+    sales.unshift(newSale);
     localStorage.setItem(SALES_KEY, JSON.stringify(sales));
     return newSale;
   }
